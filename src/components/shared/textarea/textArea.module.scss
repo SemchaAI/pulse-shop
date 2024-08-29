@@ -1,0 +1,51 @@
+.container {
+  margin-top: 10px;
+}
+
+.textarea {
+  height: 150px;
+  width: 100%;
+  padding: 10px 20px;
+
+  outline: none;
+  resize: none;
+
+  border: 1px solid var(--outline-border);
+  border-radius: 3.5px;
+
+  color: var(--text-primary);
+  background-color: var(--custom-bg-secondary);
+
+  box-shadow: 0 0 0 30px var(--custom-bg-secondary) inset;
+
+  @include body1Typo;
+  @include transition;
+  &:hover,
+  &:focus {
+    border: 1px solid var(--primary-main);
+    outline: none;
+  }
+  &:focus + .icon {
+    fill: var(--primary-main);
+  }
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--custom-bg-secondary) inset;
+    -webkit-text-fill-color: var(--text-primary);
+  }
+
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--custom-bg-secondary) inset;
+    -webkit-text-fill-color: var(--text-primary);
+  }
+}
+.inputError {
+  border: 1px solid var(--error-main);
+}
+
+.error {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  color: var(--error-main);
+  height: 24px;
+}

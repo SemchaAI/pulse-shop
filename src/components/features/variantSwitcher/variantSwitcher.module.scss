@@ -1,0 +1,20 @@
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.tagList {
+  display: flex;
+  gap: 5px;
+  list-style: none;
+
+  width: fit-content;
+  padding: 3px 5px;
+  margin: 0;
+
+  border-radius: 20px;
+
+  background-color: var(--card);
+  border: 1px solid var(--divider);
+}

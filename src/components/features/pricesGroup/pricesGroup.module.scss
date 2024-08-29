@@ -1,0 +1,15 @@
+.container {
+  margin-top: 20px;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.title {
+  font-weight: bold;
+}
+.inputWrapper {
+  margin-top: 10px;
+  display: flex;
+  gap: 16px;
+}

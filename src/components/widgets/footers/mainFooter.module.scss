@@ -1,0 +1,17 @@
+.footer {
+  width: 100%;
+  background-color: var(--card);
+  grid-area: footer;
+  border-top: 1px solid var(--divider);
+}
+.footerContainer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.footerText {
+  width: 100%;
+
+  @include body2Typo;
+  text-align: end;
+}

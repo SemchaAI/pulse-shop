@@ -1,0 +1,16 @@
+.authContent {
+  min-width: 300px;
+  width: 50%;
+  margin: 40px auto;
+}
+.authTitle {
+  margin: 10px auto;
+  text-align: center;
+  @include headline24Typo;
+}
+.authButtons {
+  margin: 40px 0;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,32 @@
+.field {
+}
+.label {
+}
+
+.inputContainer {
+  position: relative;
+}
+.icon {
+  position: absolute;
+  right: 10px;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  @include transition;
+
+  &:hover,
+  &:focus {
+    stroke: var(--error-main);
+  }
+}
+
+.error {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  color: var(--error-main);
+  height: 24px;
+}

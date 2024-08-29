@@ -1,0 +1,41 @@
+.checkout {
+  margin: 50px 0;
+}
+.title {
+  @include headline32Typo;
+}
+.checkoutContainer {
+  margin-top: 45px;
+  display: flex;
+
+  gap: 45px;
+}
+.checkoutList {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 45px;
+}
+.cartItems {
+  width: 100%;
+  height: 240px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  @include scrollBar;
+}
+
+.personalInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+.payment {
+  width: 430px;
+  height: fit-content;
+
+  position: sticky;
+  top: 45px;
+  // flex-grow: 4;
+}

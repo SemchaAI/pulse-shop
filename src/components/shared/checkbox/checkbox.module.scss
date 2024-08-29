@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.checkbox {
+  display: none;
+}
+.checkboxLabel {
+  //leading-none cursor-pointer flex-1
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  gap: 5px;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+}
+.checkboxContainer {
+  display: flex;
+  border-radius: 8px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--outline-border);
+  @include transition;
+}
+.checked {
+  background-color: var(--primary-main);
+}
+.check {
+  padding: 2px;
+  stroke: var(--contrast);
+}

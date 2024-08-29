@@ -1,0 +1,22 @@
+.paymentTotal {
+  margin: 0px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @include headline24Typo;
+}
+
+.paymentInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+  gap: 5px;
+
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+}
+.paymentBtn {
+  margin-top: 20px;
+  @include body1Typo;
+}

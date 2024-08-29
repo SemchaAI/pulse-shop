@@ -1,0 +1,65 @@
+@import './base.scss';
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr 80px;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+}
+
+// ANIMATIONS
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+@keyframes rotateRight360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+.fadeOut {
+  animation: fadeOut 0.3s forwards;
+}
+
+/* animation classes */
+.rotate360 {
+  animation: rotateRight360 0.8s infinite;
+}
+
+//ERROR PAGE
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.errorTitle {
+  @include headline3Typo;
+}

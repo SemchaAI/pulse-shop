@@ -1,0 +1,71 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+
+  background-color: var(--card);
+}
+.cardLink {
+  text-decoration: none;
+  color: var(--primary-main);
+
+  @include transition;
+  &:hover,
+  &:focus {
+    color: var(--primary-contained-hover);
+  }
+}
+.cardImg {
+  display: block;
+  margin: 0 auto;
+
+  @include transition;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+}
+.cardTitle {
+  margin-top: 20px;
+  text-decoration: none;
+}
+.cardControls {
+  display: flex;
+  gap: 10px;
+}
+.cardBtn {
+  flex-grow: 1;
+  @include body2Typo;
+}
+.cardRating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.starRate {
+  display: flex;
+  align-items: center;
+}
+.cardPrice {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  //old price 24px current price 22px
+  height: 46px;
+}
+.oldPriceBlock {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  @include body2Typo;
+}
+.oldPrice {
+  text-decoration: line-through;
+  color: var(--secondary-contained-hover);
+}

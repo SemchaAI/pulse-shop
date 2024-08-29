@@ -1,0 +1,11 @@
+.profileContainer {
+  flex-grow: 1;
+}
+.form {
+  //title height 32px + profile card margin 20px
+  margin-top: 52px;
+}
+.controls {
+  display: flex;
+  gap: 10px;
+}

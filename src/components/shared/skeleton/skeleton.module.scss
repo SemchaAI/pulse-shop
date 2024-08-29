@@ -1,0 +1,14 @@
+/* skeleton */
+.skeleton {
+  background-color: var(--skeleton);
+  color: var(--skeleton);
+
+  cursor: none;
+
+  background: var(--gradient-skeleton) var(--skeleton);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  &:global {
+    animation: 1s loading ease-in-out infinite;
+  }
+}

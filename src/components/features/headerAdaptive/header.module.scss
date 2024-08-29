@@ -1,0 +1,90 @@
+.closeBtn,
+.mobOverlay {
+  display: none;
+}
+
+// Burger menu START
+.burgerMenu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 40px;
+  min-height: 40px;
+
+  padding: 5px;
+
+  // background-color: var(--primary-main);
+  // border-radius: 5px;
+  stroke: var(--primary-main);
+
+  cursor: pointer;
+
+  @include transition;
+
+  &:hover,
+  &:focus {
+    stroke: var(--primary-contained-hover);
+  }
+}
+// Burger menu END
+
+@media (max-width: 768px) {
+  /* BURGER  START*/
+  .burgerMenu {
+    display: flex;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* BURGER  END*/
+
+  .headerContainer {
+    display: none;
+    position: fixed;
+    width: 60%;
+    min-width: 360px;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+    z-index: var(--z-mob-menu);
+    background-color: var(--body-bg);
+  }
+  .headerContainerActive {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    //mb links wiill be in center and will have grow attr
+    justify-content: space-between;
+  }
+  .mobOverlay {
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: var(--z-overlay);
+    background: var(--overlay);
+  }
+  .closeBtn {
+    margin-left: auto;
+    display: flex;
+    border-radius: 5px;
+  }
+  .closeIcon {
+    cursor: pointer;
+    stroke: var(--primary-main);
+    @include transition;
+    &:hover,
+    &:focus {
+      stroke: var(--primary-contained-hover);
+    }
+  }
+}
+@media (max-width: 425px) {
+  .headerContainer {
+    width: 100%;
+  }
+}

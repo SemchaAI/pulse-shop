@@ -1,0 +1,73 @@
+.header {
+  background-color: var(--card);
+  padding: 10px 0 9px 0;
+  grid-area: header;
+  border-bottom: 1px solid var(--divider);
+}
+.headerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &:hover .logoIcon,
+  &:focus .logoIcon {
+    stroke: var(--error-main);
+  }
+}
+
+.logoIcon {
+  @include transition;
+}
+
+.logoTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.logoTitle {
+  @include headline5Typo;
+  & span {
+    color: var(--error-main);
+  }
+}
+.logoText {
+  display: flex;
+  justify-content: space-between;
+  @include body2Typo;
+}
+
+.logoLink,
+.navLink {
+  color: var(--primary-main);
+  text-decoration: none;
+  // &:hover {
+  //   text-decoration: underline;
+  // }
+}
+
+@media screen and (max-width: 991px) {
+  .headerContainer {
+    gap: 5px;
+  }
+  .logoTextBlock {
+    display: none;
+  }
+  .logoIcon {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .logoIcon {
+    min-width: 30px;
+    min-height: 30px;
+  }
+}

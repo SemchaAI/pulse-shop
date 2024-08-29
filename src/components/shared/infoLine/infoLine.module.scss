@@ -1,0 +1,21 @@
+.infoRow {
+  height: 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.value {
+  font-weight: bold;
+}
+
+.line {
+  height: calc(100% - 6px);
+  position: relative;
+  flex-grow: 1;
+  border-bottom: 1px dashed var(--divider);
+}

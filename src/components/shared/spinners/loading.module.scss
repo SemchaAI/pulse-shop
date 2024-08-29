@@ -1,0 +1,9 @@
+.loader {
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  border: 4px dotted var(--primary-main);
+}
+.circle {
+  aspect-ratio: 1 / 1;
+}

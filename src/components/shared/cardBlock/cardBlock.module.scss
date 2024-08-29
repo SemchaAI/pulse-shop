@@ -1,0 +1,22 @@
+.cardBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  padding: 30px 35px 35px 35px;
+  border-radius: 30px;
+
+  background-color: var(--card);
+}
+.cardBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  @include headline24Typo;
+  font-family: var();
+}
+.content {
+  width: 100%;
+}

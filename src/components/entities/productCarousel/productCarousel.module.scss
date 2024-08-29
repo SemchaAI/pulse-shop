@@ -1,0 +1,114 @@
+.embla {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: auto;
+  --slide-height: 450px;
+  // --slide-spacing: 1rem;
+  --slide-size: 100%;
+
+  border-radius: 5px;
+  overflow: hidden;
+
+  background-color: var(--card);
+}
+.emblaViewport {
+  overflow: hidden;
+}
+.emblaContainer {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+.emblaSlide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+}
+.emblaSlideNumber {
+  // box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  border-radius: 1.8rem;
+  font-size: 4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--slide-height);
+}
+.emblaThumbs {
+  --thumbs-slide-height: 150px;
+  --thumbs-slide-width: 150px;
+  width: var(--thumbs-slide-width);
+}
+.emblaThumbsViewport {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: 1px solid var(--primary-main);
+  overflow: hidden;
+}
+.emblaThumbsContainer {
+  display: flex;
+  flex-direction: column;
+  height: var(--slide-height);
+  width: var(--thumbs-slide-width);
+}
+.emblaThumbsSlide {
+  flex: 0 0 33%;
+  min-width: 0;
+}
+.thumbsSlideNumber {
+  // -webkit-tap-highlight-color: rgba(var(--primary-light), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--thumbs-slide-height);
+  // margin: 5px;
+  width: 100%;
+  @include transition;
+  background-color: var(--card);
+}
+.thumbsSlideSelected .thumbsSlideNumber {
+  filter: brightness(77%);
+  // background-color: var(--filter-brightness);
+}
+.emblaButtons {
+  display: none;
+}
+
+@media (max-width: 661px) {
+  .embla {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    // --slide-height: 300px;
+    // --slide-size: 100%;
+  }
+  .emblaSlideNumber {
+    height: auto;
+  }
+  .emblaSlideMainImg {
+    height: 100%;
+    width: 100%;
+  }
+  .emblaThumbs {
+    display: none;
+  }
+  .emblaButtons {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+
+    right: 0;
+    left: 0;
+    top: calc(50% - 25px);
+
+    pointer-events: none;
+  }
+}

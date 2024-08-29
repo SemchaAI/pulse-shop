@@ -1,0 +1,8 @@
+.active {
+  @include transition;
+  fill: var(--primary-main);
+}
+.default {
+  fill: var(--secondary-main);
+  @include transition;
+}

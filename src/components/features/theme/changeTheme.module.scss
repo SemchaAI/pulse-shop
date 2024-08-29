@@ -1,0 +1,18 @@
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme svg {
+  fill: var(--primary-main);
+  stroke: var(--primary-main);
+  @include transition;
+  &:hover,
+  &:focus {
+    fill: var(--primary-outlined-hover);
+  }
+}

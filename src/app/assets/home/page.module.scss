@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  gap: 40px;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    margin-top: 20px;
+    flex-direction: column;
+  }
+}

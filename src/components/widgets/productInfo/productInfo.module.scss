@@ -1,0 +1,139 @@
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.productMain {
+  display: flex;
+  gap: 20px;
+}
+.productImgContainer {
+  width: 450px;
+  height: 450px;
+  border-radius: 8px;
+  // border: 1px solid var(--primary);
+  position: relative;
+  // background-color: var(--tertiary);
+}
+.productImg {
+  border-radius: 8px;
+}
+.productImgHintIcon {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+
+  fill: var(--primary-main);
+}
+
+.productColumn {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 620px);
+}
+.productTitle {
+  color: var(--primary-main);
+  @include headline3Typo;
+}
+.productDescription {
+  margin-top: 20px;
+  width: 100%;
+
+  @include body2Typo();
+}
+.productInfo {
+  margin-top: 20px;
+}
+.productPrice {
+}
+.productInfoLabel {
+  margin-right: 10px;
+  color: var(--primary-contained-hover);
+}
+.productCount {
+}
+.productControlsContainer {
+  margin-top: 50px;
+}
+.productSecond {
+  margin-top: 20px;
+}
+.productCharacteristics {
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border-radius: 15px;
+
+  background-color: var(--card);
+}
+.productCharTitle {
+  @include headline4Typo;
+  color: var(--primary-main);
+}
+.productCharacteristic {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--divider);
+}
+.productInfoTitle {
+  @include body1Typo;
+  color: var(--primary-main);
+}
+.productInfoText {
+}
+
+//Product
+.productMedia {
+  display: flex;
+  width: 600px;
+  gap: 20px;
+  border-radius: 15px;
+
+  // background-color: var(--card);
+}
+.productSwiper {
+  margin: 0;
+  max-width: 450px;
+
+  position: relative;
+  border-radius: 8px;
+
+  // background-color: var(--card);
+}
+
+.productSwiper2 {
+  margin: 0;
+  max-width: 150px;
+  max-height: 450px;
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 8px;
+
+  background-color: var(--card);
+}
+.productSwiperImg {
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  .productMain {
+    flex-direction: column;
+  }
+  .productColumn {
+    width: 100%;
+  }
+  //Product
+  .productMedia {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 661px) {
+  .productMedia {
+    width: 100%;
+  }
+}

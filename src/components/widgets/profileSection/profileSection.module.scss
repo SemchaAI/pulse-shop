@@ -1,0 +1,39 @@
+.title {
+  @include headline32Typo;
+}
+
+.profileSection {
+  margin: 20px auto;
+}
+.profileContainer {
+  display: flex;
+  gap: 20px;
+}
+.profileInfo {
+  width: 600px;
+}
+.profileCard {
+  position: relative;
+  padding: 30px 20px;
+  margin-top: 20px;
+
+  border-radius: 10px;
+  border: 1px solid var(--border);
+
+  background-color: var(--card);
+}
+.info {
+  color: var(--primary-main);
+}
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.icon {
+  stroke: var(--success-main);
+}

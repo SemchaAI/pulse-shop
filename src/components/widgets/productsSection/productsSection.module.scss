@@ -1,0 +1,9 @@
+//width: 'calc(100% - 300px)', height: '100dvh'
+.section {
+  width: 100%;
+  padding: 0px 0 40px 0px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}

@@ -1,0 +1,17 @@
+.topBar {
+  width: 100%;
+  top: 0;
+  position: sticky;
+
+  background: var(--card);
+  border-bottom: 1px solid var(--divider);
+  z-index: var(--z-topBar);
+}
+.wrapper {
+  padding: 15px 0 14px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}

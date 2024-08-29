@@ -1,0 +1,30 @@
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-weight: bold;
+}
+.checkboxList {
+  //scrollbar
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 384px; //need some tests
+
+  gap: 16px;
+  padding: 0 8px;
+
+  overflow: auto;
+}
+.showBtn {
+  padding: 0;
+  border: none;
+}

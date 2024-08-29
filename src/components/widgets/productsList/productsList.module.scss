@@ -1,0 +1,18 @@
+.container {
+  // margin-top: 20px;
+}
+
+.title {
+  margin-top: 30px;
+  @include headline24Typo;
+}
+.list {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+}
