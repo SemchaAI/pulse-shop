@@ -7,7 +7,6 @@ import { compare, hashSync } from 'bcrypt';
 import { Role } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { AuthOptions } from 'next-auth';
-import { cookies } from 'next/headers';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -126,7 +125,7 @@ export const authOptions: AuthOptions = {
           return true;
         }
 
-        await prisma.user.create({
+        const userCreated = await prisma.user.create({
           data: {
             name: user.name || 'User #' + user.id,
             email: user.email,
@@ -137,44 +136,9 @@ export const authOptions: AuthOptions = {
             providerId: account?.providerAccountId,
           },
         });
-
-        const token = cookies().get('token');
-
-        if (!token) {
-          return true;
+        if (!userCreated) {
+          throw new Error('User not created');
         }
-
-        // const userFavorite = await prisma.favorite.findFirst({
-        //   where: {
-        //     token: token.value,
-        //   },
-        // });
-        // if (userFavorite) {
-        //   await prisma.favorite.update({
-        //     where: {
-        //       id: userFavorite.id,
-        //     },
-        //     data: {
-        //       userId: Number(user.id),
-        //     },
-        //   });
-        // }
-        // const userCart = await prisma.cart.findFirst({
-        //   where: {
-        //     token: token.value,
-        //   },
-        // });
-        // if (userCart) {
-        //   await prisma.cart.update({
-        //     where: {
-        //       id: userCart.id,
-        //     },
-        //     data: {
-        //       userId: Number(user.id),
-        //     },
-        //   });
-        // }
-
         return true;
       } catch (error) {
         console.log('Error [signIn]: ', error);

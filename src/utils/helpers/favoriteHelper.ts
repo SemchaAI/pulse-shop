@@ -1,6 +1,5 @@
 'use server';
 import { prisma } from '@/prisma/prisma-client';
-import { getUserSession } from './getUserSession';
 
 export const favoriteHelper = async (token: string) => {
   let userFavorite = await prisma.favorite.findFirst({

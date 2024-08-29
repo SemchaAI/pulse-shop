@@ -61,7 +61,7 @@ export const ProfileForm = ({ user }: IProps) => {
     signOut({
       callbackUrl: '/',
     });
-    deleteToken();
+    //when i will sync user with cart and favorite i will delete token
   };
 
   return (
