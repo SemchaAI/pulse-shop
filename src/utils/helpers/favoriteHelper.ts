@@ -1,4 +1,3 @@
-'use server';
 import { prisma } from '@/prisma/prisma-client';
 
 export const favoriteHelper = async (token: string) => {
@@ -7,25 +6,13 @@ export const favoriteHelper = async (token: string) => {
       token,
     },
   });
-
+  console.log('userFavorite', userFavorite);
   if (!userFavorite) {
     userFavorite = await prisma.favorite.create({
       data: {
         token,
       },
     });
-    //isUserLoggedIn
-    // const user = await getUserSession();
-    // if(user) {
-    //   userFavorite = await prisma.favorite.update({
-    //     where: {
-    //       id: userFavorite.id,
-    //     },
-    //     data: {
-    //       userId: Number(user.id),
-    //     },
-    //   });
-    // }
   }
 
   return userFavorite;
