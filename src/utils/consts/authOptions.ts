@@ -7,6 +7,9 @@ import { compare, hashSync } from 'bcrypt';
 import { Role } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { AuthOptions } from 'next-auth';
+import { cookies } from 'next/headers';
+import { tokenHelper } from '../helpers';
+import { tokenCleaner } from '../helpers/tokenCleaner';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -72,6 +75,9 @@ export const authOptions: AuthOptions = {
         if (!findUser.verified) {
           return null;
         }
+
+        await tokenCleaner(findUser.token);
+
         return {
           id: findUser.id,
           name: findUser.name,
@@ -113,7 +119,7 @@ export const authOptions: AuthOptions = {
           },
         });
         if (findUser) {
-          await prisma.user.update({
+          const providerUser = await prisma.user.update({
             where: {
               id: findUser.id,
             },
@@ -122,8 +128,10 @@ export const authOptions: AuthOptions = {
               providerId: account?.providerAccountId,
             },
           });
+          await tokenCleaner(providerUser.token);
           return true;
         }
+        const { token } = await tokenHelper();
 
         const userCreated = await prisma.user.create({
           data: {
@@ -134,11 +142,13 @@ export const authOptions: AuthOptions = {
 
             provider: account?.provider,
             providerId: account?.providerAccountId,
+            token: token,
           },
         });
         if (!userCreated) {
           throw new Error('User not created');
         }
+        await tokenCleaner(userCreated.token);
         return true;
       } catch (error) {
         console.log('Error [signIn]: ', error);
