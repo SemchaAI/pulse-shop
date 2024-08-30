@@ -2,6 +2,7 @@
 import { CheckoutRequest } from '@/models/checkout';
 import { prisma } from '@/prisma/prisma-client';
 import { createPayment } from '@/utils/createPayment';
+import { tokenHelper } from '@/utils/helpers';
 import { getUserSession } from '@/utils/helpers/getUserSession';
 import { sendActivationMail, sendOrderMail } from '@/utils/mail';
 import { OrderStatus, Prisma } from '@prisma/client';
@@ -153,7 +154,10 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
     throw error;
   }
 }
-export async function registerUser(body: Prisma.UserCreateInput) {
+export async function registerUser(
+  //tokenRef will be created if not exists
+  body: Omit<Prisma.UserCreateInput, 'tokenRef'>
+) {
   try {
     const findUser = await prisma.user.findUnique({
       where: {
@@ -168,11 +172,14 @@ export async function registerUser(body: Prisma.UserCreateInput) {
       throw new Error('User already exists');
     }
 
+    const { token } = await tokenHelper();
+
     const newUser = await prisma.user.create({
       data: {
         name: body.name,
         email: body.email,
         password: hashSync(body.password, 10),
+        token: token,
       },
     });
 
