@@ -13,24 +13,24 @@ import { prisma } from './prisma-client';
 import { hashSync } from 'bcrypt';
 
 async function up() {
-  await prisma.user.createMany({
-    data: [
-      {
-        name: 'Test User1',
-        email: 'roomsmore@gmail.com',
-        password: hashSync('12345678', 10),
-        role: 'USER',
-        verified: new Date(),
-      },
-      {
-        name: 'Test User2',
-        email: 'semciucnichita@gmail.com',
-        password: hashSync('12345678', 10),
-        role: 'USER',
-        verified: new Date(),
-      },
-    ],
-  });
+  // await prisma.user.createMany({
+  //   data: [
+  //     {
+  //       name: 'Test User1',
+  //       email: 'roomsmore@gmail.com',
+  //       password: hashSync('12345678', 10),
+  //       role: 'USER',
+  //       verified: new Date(),
+  //     },
+  //     {
+  //       name: 'Test User2',
+  //       email: 'semciucnichita@gmail.com',
+  //       password: hashSync('12345678', 10),
+  //       role: 'USER',
+  //       verified: new Date(),
+  //     },
+  //   ],
+  // });
   await prisma.category.createMany({
     data: Categories,
   });
@@ -86,34 +86,34 @@ async function up() {
     data: [...ProductItemThumbnails],
   });
 
-  await prisma.cart.createMany({
-    data: [
-      {
-        userId: 1,
-        token: 'token1',
-        totalAmount: 1,
-      },
-      {
-        userId: 2,
-        token: 'token2',
-        totalAmount: 1,
-      },
-    ],
-  });
-  await prisma.cartProduct.createMany({
-    data: [
-      {
-        cartId: 1,
-        productItemId: 1,
-        quantity: 1,
-      },
-      {
-        cartId: 2,
-        productItemId: 2,
-        quantity: 2,
-      },
-    ],
-  });
+  // await prisma.cart.createMany({
+  //   data: [
+  //     {
+  //       userId: 1,
+  //       token: 'token1',
+  //       totalAmount: 1,
+  //     },
+  //     {
+  //       userId: 2,
+  //       token: 'token2',
+  //       totalAmount: 1,
+  //     },
+  //   ],
+  // });
+  // await prisma.cartProduct.createMany({
+  //   data: [
+  //     {
+  //       cartId: 1,
+  //       productItemId: 1,
+  //       quantity: 1,
+  //     },
+  //     {
+  //       cartId: 2,
+  //       productItemId: 2,
+  //       quantity: 2,
+  //     },
+  //   ],
+  // });
 }
 
 async function down() {
