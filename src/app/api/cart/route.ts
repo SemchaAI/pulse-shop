@@ -1,7 +1,6 @@
 import { prisma } from '@/prisma/prisma-client';
 import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
-import { cartHelper, updateCartTotal } from '@/utils/helpers';
+import { cartHelper, createToken, updateCartTotal } from '@/utils/helpers';
 import { CreateItem } from '@/models/cartFavor';
 
 export async function GET(req: NextRequest) {
@@ -12,7 +11,7 @@ export async function GET(req: NextRequest) {
 
     const userCart = await prisma.cart.findFirst({
       where: {
-        token,
+        token: token,
       },
       include: {
         cartProduct: {
@@ -41,14 +40,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    let isNewToken = false;
-    let token = req.cookies.get('token')?.value;
-    console.log(token);
-
-    if (!token) {
-      isNewToken = true;
-      token = crypto.randomUUID();
-    }
+    const { isNewToken, token } = await createToken(req);
     const userCart = await cartHelper(token);
 
     const data = (await req.json()) as CreateItem;

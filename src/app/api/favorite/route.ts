@@ -1,7 +1,7 @@
 import { prisma } from '@/prisma/prisma-client';
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
-import { favoriteHelper } from '@/utils/helpers';
+import { createToken, favoriteHelper } from '@/utils/helpers';
 //updateFavoriteTotal
 import { CreateItem } from '@/models/cartFavor';
 
@@ -45,13 +45,8 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    let isNewToken = false;
-    let token = req.cookies.get('token')?.value;
-
-    if (!token) {
-      isNewToken = true;
-      token = crypto.randomUUID();
-    }
+    const { isNewToken, token } = await createToken(req);
+    console.log('favorite token', token);
     const userFavorite = await favoriteHelper(token);
 
     const data = (await req.json()) as CreateItem;
