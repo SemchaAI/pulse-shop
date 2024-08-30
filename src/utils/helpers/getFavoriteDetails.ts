@@ -2,7 +2,6 @@ import { IFavorite, IFavoriteItemUI } from '@/models/cartFavor';
 
 interface ReturnProps {
   items: IFavoriteItemUI[];
-  totalAmount: number;
 }
 
 export const getFavoriteDetails = (cart: IFavorite): ReturnProps => {
@@ -20,7 +19,6 @@ export const getFavoriteDetails = (cart: IFavorite): ReturnProps => {
   }));
 
   return {
-    totalAmount: cart.totalAmount,
     items,
   };
 };
