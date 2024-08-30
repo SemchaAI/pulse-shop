@@ -34,7 +34,11 @@ export const RegisterForm = ({ className }: IProps) => {
       if (!isRegistered) {
         throw Error();
       }
-      toast.success('User created. Please check your email');
+      toast.success('User created. Please check your email', {
+        duration: 30000,
+        position: 'top-center',
+        icon: '👏',
+      });
     } catch (error) {
       console.log('error', error);
       toast.error('Auth error. Please try again.');
