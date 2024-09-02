@@ -17,13 +17,18 @@
   height: var(--btn-h);
   z-index: 1;
   border-radius: 50%;
-  fill: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: all;
-  &:disabled {
-    fill: var(--primary-focused);
+
+  &:hover svg,
+  &:focus svg {
+    border-radius: 50%;
+    background-color: var(--action-disabled);
+  }
+  &:disabled svg {
+    opacity: 0.5;
   }
 }
 
@@ -35,4 +40,8 @@
 .emblaButtonSvg {
   width: var(--btn-w);
   height: var(--btn-h);
+
+  @include transition;
+
+  stroke: var(--primary-main);
 }

@@ -7,6 +7,8 @@ import {
 } from '@/utils/helpers/findProductsWithParams';
 import { Category, Product, ProductItem } from '@prisma/client';
 import css from './assets/home/page.module.scss';
+import { HeaderBanner } from '@/components/entities';
+import { OPTIONS, SLIDES } from '@/utils/consts/HeaderBanner';
 
 interface IProduct extends Product {
   productItem: ProductItem[];
@@ -25,6 +27,10 @@ export default async function Home({
   return (
     <>
       <TopBar categories={categories} />
+      <HeaderBanner
+        slides={SLIDES}
+        options={OPTIONS}
+      />
       <Container>
         <div className={css.container}>
           <Filters />
