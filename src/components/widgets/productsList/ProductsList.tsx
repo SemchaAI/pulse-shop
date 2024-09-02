@@ -15,9 +15,10 @@ interface IProps {
 
 export const ProductsList = ({ category }: IProps) => {
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
+
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
-    threshold: 0.9,
+    threshold: 0.4,
   });
 
   useEffect(() => {
