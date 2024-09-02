@@ -9,7 +9,8 @@ interface IProps {
 
 export const ProfileControls = ({ className }: IProps) => {
   const { data: session, status } = useSession();
-  if (session && session.user) {
+
+  if (session && session.user.role === 'USER') {
     return (
       <MainLink
         mode="link"
@@ -17,7 +18,7 @@ export const ProfileControls = ({ className }: IProps) => {
         version="text"
       >
         {session.user.image ? (
-          <img
+          <Image
             width={24}
             height={24}
             className={css.avatar}
