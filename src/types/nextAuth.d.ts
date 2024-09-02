@@ -7,6 +7,7 @@ import type { Role } from '@prisma/client';
 declare module 'next-auth' {
   interface Session {
     user: {
+      email: string;
       id: string;
       role: Role;
       name: string;
