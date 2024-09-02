@@ -12,3 +12,7 @@ export { RegisterForm } from './forms/RegisterForm';
 export * from './rate/RateList/RateList';
 export * from './rate/RateCard/RateCard';
 export * from './rate/StarRate';
+
+export * from './favoriteCard/FavoriteCard';
+
+export * from './AnonymousSessionProvider/AnonymousSessionProvider';
