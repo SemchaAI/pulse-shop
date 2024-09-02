@@ -7,9 +7,8 @@ import { compare, hashSync } from 'bcrypt';
 import { Role } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { AuthOptions } from 'next-auth';
-import { cookies } from 'next/headers';
-import { tokenHelper } from '../helpers';
-import { tokenCleaner } from '../helpers/tokenCleaner';
+import { registerGuest } from '../helpers';
+import { getUserSession } from '../helpers/getUserSession';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -45,7 +44,10 @@ export const authOptions: AuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        if (req.query && 'anon' in req.query && req.query.anon === 'true') {
+          return await registerGuest();
+        }
         if (!credentials) {
           return null;
         }
@@ -75,9 +77,6 @@ export const authOptions: AuthOptions = {
         if (!findUser.verified) {
           return null;
         }
-
-        await tokenCleaner(findUser.token);
-
         return {
           id: findUser.id,
           name: findUser.name,
@@ -104,35 +103,43 @@ export const authOptions: AuthOptions = {
         if (!user.email) {
           return false;
         }
+        const session = await getUserSession();
+        if (!session) return false;
+        console.log('signIn', user, account);
 
         const findUser = await prisma.user.findFirst({
           where: {
-            OR: [
-              {
-                provider: account?.provider,
-                providerId: account?.providerAccountId,
-              },
-              {
-                email: user.email,
-              },
-            ],
+            id: Number(session.id),
           },
         });
+        // const findUser = await prisma.user.findFirst({
+        //   where: {
+        //     OR: [
+        //       {
+        //         provider: account?.provider,
+        //         providerId: account?.providerAccountId,
+        //       },
+        //       {
+        //         email: user.email,
+        //       },
+        //     ],
+        //   },
+        // });
         if (findUser) {
           const providerUser = await prisma.user.update({
             where: {
               id: findUser.id,
             },
             data: {
+              email: user.email,
+              name: user.name || 'User #' + user.id,
+              role: 'USER' as Role,
               provider: account?.provider,
               providerId: account?.providerAccountId,
             },
           });
-          await tokenCleaner(providerUser.token);
           return true;
         }
-        const { token } = await tokenHelper();
-
         const userCreated = await prisma.user.create({
           data: {
             name: user.name || 'User #' + user.id,
@@ -142,13 +149,12 @@ export const authOptions: AuthOptions = {
 
             provider: account?.provider,
             providerId: account?.providerAccountId,
-            token: token,
+            // token: randomUUID(),
           },
         });
         if (!userCreated) {
           throw new Error('User not created');
         }
-        await tokenCleaner(userCreated.token);
         return true;
       } catch (error) {
         console.log('Error [signIn]: ', error);

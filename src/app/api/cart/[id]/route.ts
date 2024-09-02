@@ -1,5 +1,6 @@
 import { prisma } from '@/prisma/prisma-client';
 import { updateCartTotal } from '@/utils/helpers';
+import { getUserSession } from '@/utils/helpers/getUserSession';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PATCH(
@@ -9,11 +10,12 @@ export async function PATCH(
   try {
     const id = Number(params.id);
     const data = (await req.json()) as { quantity: number };
-    const token = req.cookies.get('token')?.value;
 
-    if (!token) {
+    const session = await getUserSession();
+
+    if (!session) {
       return NextResponse.json(
-        { message: 'Cart token not found' },
+        { message: 'Cart id not found' },
         { status: 404 }
       );
     }
@@ -38,7 +40,7 @@ export async function PATCH(
         quantity: data.quantity,
       },
     });
-    const updatedCart = await updateCartTotal(token);
+    const updatedCart = await updateCartTotal(Number(session.id));
     return NextResponse.json(updatedCart);
   } catch (error) {
     console.log('[CART_PATCH] Something went wrong', error);
@@ -54,11 +56,11 @@ export async function DELETE(
 ) {
   try {
     const id = Number(params.id);
-    const token = req.cookies.get('token')?.value;
+    const session = await getUserSession();
 
-    if (!token) {
+    if (!session) {
       return NextResponse.json(
-        { message: 'Cart token not found' },
+        { message: 'Cart id not found' },
         { status: 404 }
       );
     }
@@ -80,7 +82,7 @@ export async function DELETE(
         id,
       },
     });
-    const updatedCart = await updateCartTotal(token);
+    const updatedCart = await updateCartTotal(Number(session.id));
     return NextResponse.json(updatedCart);
   } catch (error) {
     console.log('[CART_DELETE] Something went wrong', error);

@@ -2,22 +2,21 @@
 import { CheckoutRequest } from '@/models/checkout';
 import { prisma } from '@/prisma/prisma-client';
 import { createPayment } from '@/utils/createPayment';
-import { tokenHelper } from '@/utils/helpers';
 import { getUserSession } from '@/utils/helpers/getUserSession';
 import { sendActivationMail, sendOrderMail } from '@/utils/mail';
-import { OrderStatus, Prisma } from '@prisma/client';
+import { OrderStatus, Prisma, Role } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomUUID } from 'crypto';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function createOrder(data: CheckoutRequest) {
   try {
-    const cookiesStore = cookies();
-    const token = cookiesStore.get('token')?.value;
+    const session = await getUserSession();
+    // const cookiesStore = cookies();
+    // const token = cookiesStore.get('token')?.value;
 
-    if (!token) {
-      throw new Error('Cart token not found');
+    if (!session) {
+      throw new Error('User not found');
     }
 
     const userCart = await prisma.cart.findFirst({
@@ -34,11 +33,11 @@ export async function createOrder(data: CheckoutRequest) {
         },
       },
       where: {
-        token,
+        userId: Number(session.id),
       },
     });
 
-    if (!userCart) {
+    if (!userCart || userCart.userId) {
       throw new Error('Cart not found');
     }
 
@@ -55,7 +54,7 @@ export async function createOrder(data: CheckoutRequest) {
         comment: data.textarea,
 
         totalAmount: userCart.totalAmount,
-        token,
+        userId: userCart.userId,
         status: OrderStatus.PENDING,
         items: JSON.stringify(userCart.cartProduct),
       },
@@ -171,15 +170,26 @@ export async function registerUser(
       }
       throw new Error('User already exists');
     }
+    const session = await getUserSession();
+    if (!session) throw new Error('Unexpected error. Session not found');
 
-    const { token } = await tokenHelper();
+    const guestUser = await prisma.user.findUnique({
+      where: {
+        id: Number(session.id),
+      },
+    });
 
-    const newUser = await prisma.user.create({
+    if (!guestUser) throw new Error('Unexpected error. Guest user not found');
+
+    const newUser = await prisma.user.update({
+      where: {
+        id: guestUser.id,
+      },
       data: {
         name: body.name,
         email: body.email,
         password: hashSync(body.password, 10),
-        token: token,
+        role: 'USER' as Role,
       },
     });
 

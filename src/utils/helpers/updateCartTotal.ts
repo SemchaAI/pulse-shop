@@ -1,9 +1,9 @@
 import { prisma } from '@/prisma/prisma-client';
 
-export const updateCartTotal = async (token: string) => {
+export const updateCartTotal = async (userId: number) => {
   const cart = await prisma.cart.findFirst({
     where: {
-      token,
+      userId,
     },
     include: {
       cartProduct: {

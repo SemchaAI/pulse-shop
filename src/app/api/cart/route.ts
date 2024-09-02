@@ -1,17 +1,18 @@
 import { prisma } from '@/prisma/prisma-client';
 import { NextRequest, NextResponse } from 'next/server';
-import { cartHelper, createToken, updateCartTotal } from '@/utils/helpers';
+import { cartHelper, updateCartTotal } from '@/utils/helpers';
 import { CreateItem } from '@/models/cartFavor';
+import { getUserSession } from '@/utils/helpers/getUserSession';
 
 export async function GET(req: NextRequest) {
   try {
-    const token = req.cookies.get('token')?.value;
+    const session = await getUserSession();
 
-    if (!token) return NextResponse.json({ items: [] });
+    if (!session) return NextResponse.json({ items: [] });
 
     const userCart = await prisma.cart.findFirst({
       where: {
-        token: token,
+        userId: Number(session.id),
       },
       include: {
         cartProduct: {
@@ -40,9 +41,10 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { isNewToken, token } = await createToken(req);
-    const userCart = await cartHelper(token);
-
+    const session = await getUserSession();
+    if (!session) return NextResponse.json('Auth error', { status: 401 });
+    const userCart = await cartHelper(Number(session.id));
+    console.log('userCart', userCart);
     const data = (await req.json()) as CreateItem;
     const findCartItem = await prisma.cartProduct.findFirst({
       where: {
@@ -50,6 +52,7 @@ export async function POST(req: NextRequest) {
         productItemId: data.productItemId,
       },
     });
+    console.log('findCartItem', findCartItem);
 
     if (findCartItem) {
       await prisma.cartProduct.update({
@@ -69,15 +72,9 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const updatedCart = await updateCartTotal(token);
+    const updatedCart = await updateCartTotal(Number(session.id));
 
     const resp = NextResponse.json(updatedCart);
-    if (isNewToken) {
-      resp.cookies.set('token', token, {
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 7,
-      });
-    }
     return resp;
   } catch (error) {
     console.log('[CART_POST] Server error', error);

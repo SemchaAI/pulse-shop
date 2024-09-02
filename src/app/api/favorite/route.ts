@@ -1,19 +1,35 @@
 import { prisma } from '@/prisma/prisma-client';
 import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
-import { createToken, favoriteHelper } from '@/utils/helpers';
+import { favoriteHelper } from '@/utils/helpers';
 //updateFavoriteTotal
 import { CreateItem } from '@/models/cartFavor';
+import { getUserSession } from '@/utils/helpers/getUserSession';
 
 export async function GET(req: NextRequest) {
   try {
-    const token = req.cookies.get('token')?.value;
+    // const token = req.cookies.get('token')?.value;
+    // const { token, tokenState } = await serverTokenMiddleware(req);
 
-    if (!token) return NextResponse.json({ items: [] });
+    const session = await getUserSession();
 
+    if (!session) {
+      return NextResponse.json(
+        { message: 'Favorite id not found' },
+        { status: 404 }
+      );
+    }
+
+    // if (tokenState === TokenState.NEW) {
+    //   const resp = NextResponse.json({ items: [] });
+    //   resp.cookies.set('token', token, {
+    //     httpOnly: true,
+    //     maxAge: 60 * 60 * 24 * 7,
+    //   });
+    //   return resp;
+    // }
     const userFavorite = await prisma.favorite.findFirst({
       where: {
-        token,
+        userId: Number(session.id),
       },
       include: {
         favoriteProduct: {
@@ -33,6 +49,17 @@ export async function GET(req: NextRequest) {
         },
       },
     });
+    if (!userFavorite) {
+      return NextResponse.json({ items: [] });
+    }
+    // if (tokenState === TokenState.REFRESHED) {
+    //   const resp = NextResponse.json(userFavorite);
+    //   resp.cookies.set('token', token, {
+    //     httpOnly: true,
+    //     maxAge: 60 * 60 * 24 * 7,
+    //   });
+    //   return resp;
+    // }
     return NextResponse.json(userFavorite);
   } catch (error) {
     console.log('[FAVORITE_GET] Server error', error);
@@ -43,11 +70,35 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
-    const { isNewToken, token } = await createToken(req);
-    console.log('favorite token', token);
-    const userFavorite = await favoriteHelper(token);
+    // const currUser = await getUserSession();
+    // if (currUser) {
+    //   const user = await prisma.user.findUnique({
+    //     where: {
+    //       id: Number(currUser.id),
+    //     },
+    //   });
+    //   if (!user) {
+    //     throw new Error('User not found');
+    //   }
+    //   req.cookies.set('token', user.token);
+    // }
+    // const { isNewToken, token } = await createToken(req);
+
+    // const { token, tokenState } = await serverTokenMiddleware(req);
+    // console.log('favorite token', token);
+
+    const session = await getUserSession();
+
+    if (!session) {
+      return NextResponse.json(
+        { message: 'Favorite id not found' },
+        { status: 404 }
+      );
+    }
+
+    const userFavorite = await favoriteHelper(Number(session.id));
 
     const data = (await req.json()) as CreateItem;
     const findFavoriteItem = await prisma.favoriteProduct.findFirst({
@@ -74,7 +125,7 @@ export async function POST(req: NextRequest) {
 
     const favorite = await prisma.favorite.findFirst({
       where: {
-        token,
+        userId: Number(session.id),
       },
       include: {
         favoriteProduct: {
@@ -100,12 +151,12 @@ export async function POST(req: NextRequest) {
     }
 
     const resp = NextResponse.json(favorite);
-    if (isNewToken) {
-      resp.cookies.set('token', token, {
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 7,
-      });
-    }
+    // if (tokenState === TokenState.REFRESHED || tokenState === TokenState.NEW) {
+    //   resp.cookies.set('token', token, {
+    //     httpOnly: true,
+    //     maxAge: 60 * 60 * 24 * 7,
+    //   });
+    // }
     return resp;
   } catch (error) {
     console.log('[FAVORITE_POST] Server error', error);
