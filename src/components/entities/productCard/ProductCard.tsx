@@ -1,16 +1,15 @@
 'use client';
 import { Heart, Loader, ShoppingCart } from 'lucide-react';
-import toast from 'react-hot-toast';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useCartStore, useFavoriteStore } from '@/stores';
 import { MainBtn, SaleTag } from '@/components/shared';
 
 import type { Product, ProductItem } from '@prisma/client';
 import css from './productCard.module.scss';
-import { useState } from 'react';
+
 import { StarRate } from '@/components/entities';
+import { useCartHandlers, useFavoriteHandlers } from '@/utils/hooks';
 
 interface IProps {
   item: ProductItem;
@@ -18,36 +17,13 @@ interface IProps {
 }
 
 export const ProductCard = ({ item, product }: IProps) => {
-  const [addCartItem, loading] = useCartStore((state) => [
-    state.addCartItem,
-    state.loading,
-  ]);
-  const [addFavoriteItem, loadingFavor] = useFavoriteStore((state) => [
-    state.addFavoriteItem,
-    state.loading,
-  ]);
-
-  let [currId, setCurrId] = useState(-1);
-  const addToCartHandler = async (item: ProductItem) => {
-    try {
-      setCurrId(item.id);
-      await addCartItem({ productItemId: item.id });
-      toast.success('Product added to cart');
-    } catch (error) {
-      console.log(error);
-      toast.error('Product not added to cart');
-    }
-  };
-  const addToFavorHandler = async (item: ProductItem) => {
-    try {
-      setCurrId(item.id);
-      await addFavoriteItem({ productItemId: item.id });
-      toast.success('Product added to favorite');
-    } catch (error) {
-      console.log(error);
-      toast.error('Product not added to favorite');
-    }
-  };
+  const { addToCartHandler, loading, productId } = useCartHandlers(item.id);
+  const {
+    addToFavoriteHandler,
+    loading: loadingFavor,
+    productId: productIdFavor,
+    isFavorite,
+  } = useFavoriteHandlers(item.id);
 
   return (
     <li className={css.card}>
@@ -90,34 +66,38 @@ export const ProductCard = ({ item, product }: IProps) => {
         <MainBtn
           className={css.cardBtn}
           version="contain"
-          onClick={() => addToCartHandler(item)}
-          disabled={loading && currId === item.id}
+          onClick={() => addToCartHandler()}
+          disabled={loading && productId === item.id}
         >
-          {loading && currId === item.id ? (
+          {loading && productId === item.id ? (
             <Loader
               className="rotate360"
               width={20}
               height={20}
             />
           ) : (
-            <>
-              <ShoppingCart size={20} /> Add to cart
-            </>
+            <div className={css.cardBtnText}>
+              <ShoppingCart size={20} />
+              <span>Add to cart</span>
+            </div>
           )}
         </MainBtn>
         <MainBtn
           version="contain"
-          onClick={() => addToFavorHandler(item)}
-          disabled={loadingFavor && currId === item.id}
+          onClick={() => addToFavoriteHandler()}
+          disabled={loadingFavor && productIdFavor === item.id}
         >
-          {loadingFavor && currId === item.id ? (
+          {loadingFavor && productIdFavor === item.id ? (
             <Loader
               className="rotate360"
               width={20}
               height={20}
             />
           ) : (
-            <Heart size={20} />
+            <Heart
+              size={20}
+              className={isFavorite ? css.favorite : ''}
+            />
           )}
         </MainBtn>
       </div>
