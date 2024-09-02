@@ -49,7 +49,9 @@ export interface IItemUI {
 export interface ICartItemUI extends IItemUI {
   quantity: number;
 }
-export interface IFavoriteItemUI extends IItemUI {}
+export interface IFavoriteItemUI extends IItemUI {
+  description: string;
+}
 //create cart model
 
 export interface CreateItem {
