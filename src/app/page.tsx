@@ -22,7 +22,6 @@ export default async function Home({
 }) {
   //@categories
   const categories = await findProductsWithParams(searchParams);
-
   return (
     <>
       <TopBar categories={categories} />
