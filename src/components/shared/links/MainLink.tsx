@@ -7,6 +7,7 @@ export interface ILink {
   mode?: 'link' | 'button';
   version?: 'text' | 'outline' | 'contain';
   children?: React.ReactNode;
+  className?: string;
 }
 
 export const MainLink = ({
@@ -14,10 +15,11 @@ export const MainLink = ({
   children,
   mode = 'link',
   version = 'text',
+  className,
 }: ILink) => {
   const classes = `${css.link} ${mode === 'button' ? css.button : ''} ${
     css[version]
-  }`;
+  } ${className || ''}`;
   return (
     <Link
       href={to}
