@@ -1,0 +1,22 @@
+.favorite {
+  margin: 40px 0;
+}
+.favoriteContainer {
+}
+.favoriteTitle {
+  @include headline3Typo;
+}
+
+.favoriteBlock {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.favoriteItems {
+  width: 100%;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}

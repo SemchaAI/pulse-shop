@@ -3,22 +3,29 @@ import { Container } from '@/components/shared';
 import css from './favoriteSection.module.scss';
 import { useFavorite } from '@/utils/hooks';
 
-interface IProps {
-  className?: string;
-}
+import { FavoriteCard } from '@/components/entities';
 
-export const FavoriteSection = ({ className }: IProps) => {
+export const FavoriteSection = () => {
   const { items, removeFavoriteItem } = useFavorite();
 
-  const container = `${className}`;
   return (
-    <section className={container}>
+    <section className={css.favorite}>
       <Container>
-        <h2>Favorite</h2>
-        <div>
-          {items.map((item) => (
-            <div key={item.id}> {item.title}</div>
-          ))}
+        <div className={css.favoriteContainer}>
+          <h1 className={css.favoriteTitle}>Favorite</h1>
+          <div className={css.favoriteBlock}>
+            <ul className={css.favoriteItems}>
+              {/* <AnimatePresence mode="popLayout"> */}
+              {items.map((item, i) => (
+                <FavoriteCard
+                  key={item.id}
+                  item={item}
+                  removeFavoriteItem={removeFavoriteItem}
+                />
+              ))}
+              {/* </AnimatePresence> */}
+            </ul>
+          </div>
         </div>
       </Container>
     </section>
