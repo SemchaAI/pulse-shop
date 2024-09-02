@@ -14,7 +14,6 @@ import {
   ReqMin5Max20Validation,
 } from '@/utils/consts/validationObjects';
 import { updateUserInfo } from '@/app/actions';
-import { deleteToken } from '@/utils/helpers/deleteToken';
 
 interface IProps {
   user: User;
@@ -61,8 +60,6 @@ export const ProfileForm = ({ user }: IProps) => {
     signOut({
       callbackUrl: '/',
     });
-    deleteToken();
-    //when i will sync user with cart and favorite i will delete token
   };
 
   return (
