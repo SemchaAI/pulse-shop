@@ -9,7 +9,7 @@ export const AnonymousSessionProvider = ({
   children: React.ReactNode;
 }) => {
   const { data: session, status } = useSession();
-  console.log('AnonymousSessionProvider', session, status);
+  console.log('AnonymousSession', session, status);
   useEffect(() => {
     if (status === 'unauthenticated') {
       // login as anonymous
