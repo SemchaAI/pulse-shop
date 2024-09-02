@@ -1,10 +1,10 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { Eye, X } from 'lucide-react';
-import { useClickAway, useDebounce } from 'react-use';
+import { useDebounce } from 'react-use';
 
 import { api } from '@/services/api/baseApi';
 import { Input } from '@/components/shared/input/Input';
@@ -13,7 +13,7 @@ import { useScrollControl } from '@/utils/hooks';
 import type { ISearchProduct } from '@/services/productsApi';
 
 import css from './search.module.scss';
-import { InfoLine, Star } from '@/components/shared';
+import { Star } from '@/components/shared';
 
 export const Search = () => {
   const [query, setQuery] = useState('');
