@@ -10,6 +10,8 @@ interface FavorState {
 
   items: IFavoriteItemUI[];
 
+  isInFavorite: (id: number) => boolean;
+
   fetchFavoriteItems: () => Promise<void>;
   //add type
   addFavoriteItem: (item: CreateItem) => Promise<void>;
@@ -23,6 +25,8 @@ export const useFavoriteStore = create<FavorState>()(
       loading: false,
       error: false,
 
+      isInFavorite: (id: number) =>
+        get().items.some((item) => item.productItemId === id),
       fetchFavoriteItems: async () => {
         set({ loading: true, error: false }, false, 'fetchFavoriteItems');
         try {
