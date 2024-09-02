@@ -21,6 +21,12 @@ export const ProductsList = ({ category }: IProps) => {
     threshold: 0.4,
   });
 
+  //max two types of one product
+  const variants = 2;
+  //max of individual products
+  // variants * size = max items rendered in category
+  const size = 6;
+
   useEffect(() => {
     if (intersection?.isIntersecting) {
       setActiveCategoryId(category.id);
@@ -35,14 +41,17 @@ export const ProductsList = ({ category }: IProps) => {
     >
       <h3 className={css.title}>{category.name}</h3>
       <ul className={css.list}>
-        {category.products.map((product) =>
-          product.productItem.map((item) => (
-            <ProductCard
-              key={item.id}
-              item={item}
-              product={product}
-            />
-          ))
+        {category.products.slice(0, size).map((product) =>
+          product.productItem.slice(0, variants).map((item) => {
+            // console.log('item', item);
+            return (
+              <ProductCard
+                key={item.id}
+                item={item}
+                product={product}
+              />
+            );
+          })
         )}
       </ul>
     </div>
