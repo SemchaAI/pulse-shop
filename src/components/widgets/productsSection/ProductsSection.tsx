@@ -7,6 +7,7 @@ interface IProps {
 }
 
 export const ProductsSection = ({ categories }: IProps) => {
+  // useFavorite();
   return (
     <section className={css.section}>
       {categories.map(
@@ -15,6 +16,7 @@ export const ProductsSection = ({ categories }: IProps) => {
             <ProductsList
               key={category.id}
               category={category}
+              // favorite={favorite.items.map((item) => item.productItemId)}
             />
           )
       )}
