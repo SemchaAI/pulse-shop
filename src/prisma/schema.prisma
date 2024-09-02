@@ -18,6 +18,7 @@ enum OrderStatus {
 enum Role {
   USER
   ADMIN
+  GUEST
 }
 
 //not realized
@@ -44,8 +45,8 @@ model User {
 
   verified DateTime?
 
-  tokenRef Token  @relation(fields: [token], references: [token])
-  token    String @unique
+  // tokenRef Token  @relation(fields: [token], references: [token])
+  // token String @unique
 
   cart             Cart?
   favorite         Favorite?
@@ -57,26 +58,26 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model Token {
-  token String @id @unique
+// model Token {
+//   token String @id @unique
 
-  user     User?
-  cart     Cart?
-  favorite Favorite?
+//   user     User?
+//   cart     Cart?
+//   favorite Favorite?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
 
 model Cart {
   id Int @id @default(autoincrement())
 
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?  @unique
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
 
-  // token String?
-  tokenRef Token  @relation(fields: [token], references: [token])
-  token    String @unique
+  // // token String?
+  // tokenRef Token  @relation(fields: [token], references: [token])
+  // token    String @unique
 
   cartProduct CartProduct[]
 
@@ -104,12 +105,12 @@ model CartProduct {
 model Favorite {
   id Int @id @default(autoincrement())
 
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?  @unique
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
 
   // token String?
-  tokenRef Token  @relation(fields: [token], references: [token])
-  token    String @unique
+  // tokenRef Token  @relation(fields: [token], references: [token])
+  // token    String @unique
 
   favoriteProduct FavoriteProduct[]
 
@@ -295,10 +296,10 @@ model Rating {
 model Order {
   id Int @id @default(autoincrement())
 
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
 
-  token String
+  // token String
 
   totalAmount Int
   status      OrderStatus @default(PENDING)
