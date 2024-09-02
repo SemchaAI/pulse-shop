@@ -5,6 +5,7 @@ interface IProps {
   title?: string;
   endAdornment?: React.ReactNode;
   className?: string;
+  h?: boolean;
 }
 
 export const CardBlock = ({
@@ -12,9 +13,14 @@ export const CardBlock = ({
   endAdornment,
   className,
   children,
+  h = false,
 }: IProps) => {
   return (
-    <div className={` ${css.cardBlock} ${className || ''}`}>
+    <div
+      className={`${css.cardBlock} ${h ? css.fitContent : ''} ${
+        className || ''
+      }`}
+    >
       {title && (
         <div className={css.cardBlockHeader}>
           <h3 className={css.title}>{title}</h3>
