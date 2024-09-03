@@ -37,7 +37,7 @@ export async function createOrder(data: CheckoutRequest) {
       },
     });
 
-    if (!userCart || userCart.userId) {
+    if (!userCart) {
       throw new Error('Cart not found');
     }
 
