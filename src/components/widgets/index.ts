@@ -5,6 +5,7 @@ export * from './productsSection/ProductsSection';
 export * from './productInfo/ProductInfo';
 export * from './filters/Filters';
 export * from './cartSection/CartSection';
+export * from './productsList/HomeProductsList';
 export * from './productsList/ProductsList';
 export * from './checkoutSection/CheckoutSection';
 export * from './authSection/AuthSection';
