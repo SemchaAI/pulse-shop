@@ -1,3 +1,4 @@
+'use client';
 import { MainLink } from '@/components/shared';
 import css from './profileControls.module.scss';
 import { useSession } from 'next-auth/react';
