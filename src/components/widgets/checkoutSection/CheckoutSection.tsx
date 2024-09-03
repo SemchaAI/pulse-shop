@@ -81,11 +81,11 @@ export const CheckoutSection = () => {
           >
             <div className={css.checkoutList}>
               <CardBlock title="1. Cart">
-                <div className={css.cartItems}>
+                <ul className={css.cartItems}>
                   {loading && (
                     <Skeleton
                       width="100%"
-                      height="240px"
+                      height="100%"
                     />
                   )}
                   {!loading &&
@@ -100,7 +100,7 @@ export const CheckoutSection = () => {
                         />
                       );
                     })}
-                </div>
+                </ul>
               </CardBlock>
               <CardBlock title="2. Personal Information">
                 <div className={css.personalInfo}>

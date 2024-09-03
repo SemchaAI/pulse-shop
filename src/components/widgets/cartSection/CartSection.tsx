@@ -65,10 +65,10 @@ export const CartSection = () => {
               <div className={css.cartOrder}>
                 {/* <h3 className={css.cartTotalTitle}>Total</h3> */}
                 <div className={css.cartTotal}>
-                  Items price:{totalAmount} MDL
+                  Items price: {totalAmount} MDL
                 </div>
                 <div className={css.cartDelivery}>
-                  Delivery <span>free</span>
+                  Items positions: <span>{items.length}</span>
                 </div>
                 <p className={css.cartPolicy}>
                   <span className={css.asterisk}>*</span>By purchasing goods

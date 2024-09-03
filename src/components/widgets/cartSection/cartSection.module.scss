@@ -40,14 +40,17 @@
 }
 .cartItemsBlock {
   flex-grow: 1;
+  display: flex;
+
+  @include scrollBar;
 }
 .cartError {
 }
 .cartOrder {
-  width: 450px;
+  width: 360px;
 
   // padding: 20px;
-  max-height: 240px;
+  // max-height: 240px;
   // height: fit-content;
 
   display: flex;
@@ -73,7 +76,7 @@
 .cartPolicy {
 }
 .asterisk {
-  color: var(--error);
+  color: var(--error-main);
 }
 .cartLink {
 }
@@ -107,74 +110,20 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 1280px) {
-  // .cartItems {
-  //   width: 70%;
-  // }
-  // .cartOrder {
-  //   padding: 20px;
-  //   max-height: 240px;
-  //   // height: fit-content;
-
-  //   display: flex;
-  //   flex-direction: column;
-  //   flex-grow: 1;
-
-  //   border-radius: 8px;
-
-  //   color: var(--tertiary);
-  //   background-color: var(--background-soft);
-  //   box-shadow: var(--dp-0);
-  // }
-}
-@media (max-width: 1024px) {
-  // .cartItems {
-  //   width: 80%;
-  // }
-}
-// @media (max-width: 991px) {
-//   .cartBlock {
-//     flex-direction: column;
-//   }
-//   .cartItems {
-//     width: 100%;
-//     height: 490px;
-//   }
-//   .cartItemDescription {
-//     max-width: 100%;
-//   }
-
-//   .cartItem {
-//     height: 428px;
-//     padding: 20px;
-//     flex: 0 0 428px;
-//   }
-//   .cartItemContainer {
-//     flex-direction: column;
-//   }
-//   .cartItemImg {
-//     margin: 0 auto;
-//   }
-// }
-
-// @media (max-width: 479px) {
-//   .btnsContainer {
-//     position: absolute;
-//     right: 10px;
-//     top: 10px;
-//   }
-// }
-
 @media (max-width: 991px) {
   .cartBlock {
     flex-direction: column;
   }
   .cartItems {
+    height: 240px;
+    // width: 100%;
+    // height: 490px;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    // gap: 10px;
+  }
+  .cartOrder {
     width: 100%;
-    height: 490px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
   }
   .cartItemDescription {
     max-width: 100%;
@@ -189,6 +138,11 @@
   }
   .cartItemImg {
     margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cartItems {
+    height: 350px;
   }
 }
 

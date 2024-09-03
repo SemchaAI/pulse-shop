@@ -17,6 +17,11 @@
   gap: 45px;
 }
 .cartItems {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   width: 100%;
   height: 240px;
 
@@ -38,4 +43,24 @@
   position: sticky;
   top: 45px;
   // flex-grow: 4;
+}
+
+@media screen and (max-width: 1200px) {
+  .checkoutContainer {
+    flex-direction: column;
+  }
+  .personalInfo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 24px;
+  }
+  .payment {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cartItems {
+    height: 350px;
+  }
 }
