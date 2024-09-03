@@ -1,13 +1,31 @@
-import { ProductsList } from '../productsList/ProductsList';
+import { ICategory } from '@/models/searchWithParams';
 import css from './productsSection.module.scss';
-import { ICategory } from '@/app/page';
+import { HomeProductsList, ProductsList } from '@/components/widgets';
 
 interface IProps {
   categories: ICategory[];
+  version?: 'home' | 'default';
 }
 
-export const ProductsSection = ({ categories }: IProps) => {
-  // useFavorite();
+export const ProductsSection = ({
+  categories,
+  version = 'default',
+}: IProps) => {
+  if (version === 'home') {
+    return (
+      <section className={css.section}>
+        {categories.map(
+          (category) =>
+            category.products.length > 0 && (
+              <HomeProductsList
+                key={category.id}
+                category={category}
+              />
+            )
+        )}
+      </section>
+    );
+  }
   return (
     <section className={css.section}>
       {categories.map(
@@ -16,7 +34,6 @@ export const ProductsSection = ({ categories }: IProps) => {
             <ProductsList
               key={category.id}
               category={category}
-              // favorite={favorite.items.map((item) => item.productItemId)}
             />
           )
       )}
