@@ -1,14 +1,14 @@
 'use client';
 import { Container } from '@/components/shared';
 import css from './favoriteSection.module.scss';
-import { useFavorite } from '@/utils/hooks';
-
 import { FavoriteCard } from '@/components/entities';
 import { Box, Loader } from 'lucide-react';
+import { useFavoriteStore } from '@/stores';
 
 export const FavoriteSection = () => {
-  const { items, removeFavoriteItem, loading } = useFavorite();
-
+  const { items, removeFavoriteItem, loading } = useFavoriteStore(
+    (state) => state
+  );
   if (loading && items.length === 0) {
     return (
       <div className={css.emptyContainer}>
