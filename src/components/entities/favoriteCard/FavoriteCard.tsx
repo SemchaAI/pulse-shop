@@ -17,7 +17,7 @@ export const FavoriteCard = ({ item, removeFavoriteItem }: IProps) => {
 
   return (
     <li
-      className={css.favoriteItem}
+      className={css.favoriteItem + ' ' + (item.disabled ? css.disabled : '')}
       key={item.id}
     >
       <div className={css.favoriteItemContainer}>
@@ -45,20 +45,22 @@ export const FavoriteCard = ({ item, removeFavoriteItem }: IProps) => {
               {item.price}
               <b>MDL</b>
             </div>
-            <MainBtn
-              version="outline"
-              onClick={() => removeFavoriteItem(item.id)}
-              icon={true}
-            >
-              <X size={24} />
-            </MainBtn>
-            <MainBtn
-              version="contain"
-              icon={true}
-              onClick={() => addToCartHandler()}
-            >
-              <ShoppingCart size={24} />
-            </MainBtn>
+            <div className={css.favoriteItemPrice}>
+              <MainBtn
+                version="outline"
+                onClick={() => removeFavoriteItem(item.id)}
+                icon={true}
+              >
+                <X size={24} />
+              </MainBtn>
+              <MainBtn
+                version="contain"
+                icon={true}
+                onClick={() => addToCartHandler()}
+              >
+                <ShoppingCart size={24} />
+              </MainBtn>
+            </div>
           </div>
         </div>
       </div>

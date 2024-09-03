@@ -27,6 +27,7 @@
   }
 }
 .favoriteItemInfo {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -60,4 +61,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.disabled {
+  //tmp
+  background-color: var(--card);
+  opacity: 0.5;
+
+  pointer-events: none;
 }
