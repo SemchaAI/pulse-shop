@@ -1,6 +1,7 @@
 .container {
   display: flex;
   gap: 40px;
+  min-height: 100dvh;
 }
 @media screen and (max-width: 768px) {
   .container {
