@@ -52,7 +52,7 @@ export const CartItem = ({
             priority={index > 1 ? false : true}
             width={200}
             height={200}
-            sizes="(max-width: 375px) 200px,200px"
+            sizes="(max-width: 600px) 150px,(max-width: 375px) 100px,200px"
             className={css.cartItemImg}
             src={url + '/' + item.img}
             alt={item.title}
@@ -62,7 +62,7 @@ export const CartItem = ({
           <h3 className={css.cartItemTitle}>{item.title}</h3>
           <div>
             <span>Quantity:</span>
-            <div>
+            <div className={css.cartItemQuantity}>
               <MainBtn
                 version="outline"
                 icon={true}
@@ -73,7 +73,7 @@ export const CartItem = ({
                   height={24}
                 />
               </MainBtn>
-              <span>{item.quantity}</span>
+              <span className={css.cartItemQuantityValue}>{item.quantity}</span>
 
               <MainBtn
                 version="outline"
