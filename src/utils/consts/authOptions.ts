@@ -45,7 +45,11 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
-        if (req.query && 'anon' in req.query && req.query.anon === 'true') {
+        console.log('credentials', credentials);
+        if (req.query && req.query.anon === 'true') {
+          //multiple anonymous sessions if user will delete cookies
+          //abd will have 2 or more open tabs
+          console.log('req.query', req.query);
           return await registerGuest();
         }
         if (!credentials) {
@@ -107,11 +111,19 @@ export const authOptions: AuthOptions = {
         if (!session) return false;
         console.log('signIn', user, account);
 
+        const findUserByEmail = await prisma.user.findFirst({
+          where: {
+            email: user.email,
+          },
+        });
+        if (findUserByEmail) return true;
+
         const findUser = await prisma.user.findFirst({
           where: {
             id: Number(session.id),
           },
         });
+
         // const findUser = await prisma.user.findFirst({
         //   where: {
         //     OR: [
@@ -125,6 +137,7 @@ export const authOptions: AuthOptions = {
         //     ],
         //   },
         // });
+
         if (findUser) {
           const providerUser = await prisma.user.update({
             where: {
