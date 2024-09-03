@@ -6,7 +6,7 @@
   display: flex;
   position: relative;
 
-  // framer motion need it
+  // // framer motion need it
   flex: 0 0 240px;
 
   justify-content: space-between;
@@ -15,19 +15,16 @@
   gap: 10px;
 
   border-radius: 8px;
-  background-color: var(--tertiary);
-  box-shadow: var(--dp-0);
+  background-color: var(--body-bg);
 }
 .disabled {
-  //tmp
-  background-color: var(--card);
   opacity: 0.5;
-
   pointer-events: none;
 }
 .cartItemContainer {
+  width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 .productLink {
   display: flex;
@@ -39,20 +36,21 @@
   max-width: 300px;
   @include smartText(5lh);
   @include body2Typo;
-  color: var(--on-primary-medium-accent);
 }
 .cartItemImg {
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   @include transition;
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
   }
 }
 .cartItemInfo {
+  width: fit-content;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
-  color: var(--surface);
 }
 .cartItemPrice {
   display: flex;
@@ -69,3 +67,73 @@
 .cartItemBtn {
   display: flex;
 }
+
+//in future will be component
+.cartItemQuantity {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.cartItemQuantityValue {
+  width: 36px;
+  height: inherit;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+
+  background-color: var(--card);
+}
+
+@media screen and (max-width: 768px) {
+  .cartItem {
+    width: 100%;
+
+    flex: 0 0 350px;
+    height: 350px;
+
+    // height: 240px;
+    padding: 10px;
+
+    flex-direction: column-reverse;
+    justify-content: center;
+
+    font-size: 16px;
+  }
+  // .cartItemImg {
+  //   width: 150px;
+  //   height: 150px;
+  // }
+  .cartItemContainer {
+    align-items: center;
+
+    flex-direction: column;
+    // justify-content: space-evenly;
+  }
+  .btnsContainer {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .cartItemInfo {
+    flex-grow: 1;
+    // width: fit-content;
+    align-items: center;
+  }
+  // .cartItemTitle {
+  //   text-align: center;
+  //   max-width: 200px;
+
+  //   // font-size: 16px;
+  // }
+}
+
+// @media screen and (max-width: 479px) {
+//   .cartItemTitle {
+//     max-width: 150px;
+//   }
+// }
