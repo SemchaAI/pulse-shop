@@ -1,21 +1,11 @@
 import { Container } from '@/components/shared';
 import { Filters, ProductsSection, TopBar } from '@/components/widgets';
 
-import {
-  findProductsWithParams,
-  type IParams,
-} from '@/utils/helpers/findProductsWithParams';
-import { Category, Product, ProductItem } from '@prisma/client';
+import { findCategoriesWithParams } from '@/utils/helpers/findCategoriesWithParams';
 import css from './assets/home/page.module.scss';
 import { HeaderBanner } from '@/components/entities';
 import { OPTIONS, SLIDES } from '@/utils/consts/HeaderBanner';
-
-interface IProduct extends Product {
-  productItem: ProductItem[];
-}
-export interface ICategory extends Category {
-  products: IProduct[];
-}
+import { IParams } from '@/models/searchWithParams';
 
 export default async function Home({
   searchParams,
@@ -23,7 +13,7 @@ export default async function Home({
   searchParams: IParams;
 }) {
   //@categories
-  const categories = await findProductsWithParams(searchParams);
+  const categories = await findCategoriesWithParams(searchParams);
   return (
     <>
       <TopBar categories={categories} />
@@ -34,7 +24,10 @@ export default async function Home({
       <Container>
         <div className={css.container}>
           <Filters />
-          <ProductsSection categories={categories} />
+          <ProductsSection
+            version="home"
+            categories={categories}
+          />
         </div>
       </Container>
     </>
