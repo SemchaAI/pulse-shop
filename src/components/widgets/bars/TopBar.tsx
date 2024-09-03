@@ -1,8 +1,7 @@
 import { Container } from '@/components/shared';
 import css from './topBar.module.scss';
 import { Bar } from '@/components/entities';
-import { SortingSelect } from '@/components/features';
-import { ICategory } from '@/app/page';
+import type { ICategory } from '@/models/searchWithParams';
 
 interface Props {
   categories: ICategory[];
