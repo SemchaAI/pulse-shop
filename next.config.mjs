@@ -26,7 +26,8 @@ const nextConfig = {
   },
   //dev
   productionBrowserSourceMaps: false,
-  reactStrictMode: process.env.NEXT_PUBLIC_STRICT_MODE === 'true',
+  reactStrictMode: false,
+  //process.env.NEXT_PUBLIC_STRICT_MODE === 'true',
 };
 
 export default nextConfig;
