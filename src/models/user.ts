@@ -4,5 +4,5 @@ export interface IUserSession {
   id: string;
   role: Role;
   name: string;
-  image: string;
+  image?: string;
 }

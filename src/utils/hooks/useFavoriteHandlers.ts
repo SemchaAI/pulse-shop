@@ -1,8 +1,12 @@
+import { IUserSession } from '@/models/user';
 import { useFavoriteStore } from '@/stores';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-export const useFavoriteHandlers = (id: number) => {
+export const useFavoriteHandlers = (
+  id: number,
+  session: IUserSession | undefined
+) => {
   const [productId, setProductId] = useState(-1);
 
   const [addFavoriteItem, loading, isInFavorite] = useFavoriteStore((state) => [
@@ -19,7 +23,7 @@ export const useFavoriteHandlers = (id: number) => {
           duration: 3000,
         });
       setProductId(id);
-      await addFavoriteItem({ productItemId: id });
+      await addFavoriteItem({ productItemId: id }, session);
       toast.success('Product added to favorite');
     } catch (error) {
       console.log(error);

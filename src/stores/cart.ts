@@ -1,6 +1,8 @@
 import { CreateItem, ICartItemUI } from '@/models/cartFavor';
+import { IUserSession } from '@/models/user';
 import { api } from '@/services/api/baseApi';
 import { getCartDetails } from '@/utils/helpers';
+import { signIn } from 'next-auth/react';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -13,7 +15,10 @@ interface CartState {
   fetchCartItems: () => Promise<void>;
   updateItemQuantity: (id: number, quantity: number) => Promise<void>;
   //add type
-  addCartItem: (item: CreateItem) => Promise<void>;
+  addCartItem: (
+    item: CreateItem,
+    session: IUserSession | undefined
+  ) => Promise<void>;
   removeCartItem: (id: number) => Promise<void>;
 }
 
@@ -76,10 +81,16 @@ export const useCartStore = create<CartState>()(
           set({ loading: false });
         }
       },
-      addCartItem: async (item: CreateItem) => {
+      addCartItem: async (
+        item: CreateItem,
+        session: IUserSession | undefined
+      ) => {
         set({ loading: true, error: false });
         try {
-          const data = await api.cart.addCartItem(item);
+          if (!session) {
+            await signIn('credentials', { redirect: false }, 'anon=true');
+          }
+          const data = await api.cart.addCartItem(item, session);
           set(getCartDetails(data));
         } catch (error) {
           set({ error: true });

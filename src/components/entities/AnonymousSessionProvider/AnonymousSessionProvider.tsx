@@ -1,6 +1,6 @@
 'use client';
 import { useFavoriteStore } from '@/stores';
-import { signIn, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 import { useEffect } from 'react';
 
@@ -24,16 +24,16 @@ export const AnonymousSessionProvider = ({
     //   sign();
     // }
 
-    if (status === 'unauthenticated') {
-      signIn('credentials', { redirect: false }, 'anon=true')
-        .then(async () => {
-          await update();
-          console.info('Logged in as anonymous');
-        })
-        .catch((error) => {
-          console.error('Failed to login as anonymous', error);
-        });
-    }
+    // if (status === 'unauthenticated') {
+    //   signIn('credentials', { redirect: false }, 'anon=true')
+    //     .then(async () => {
+    //       await update();
+    //       console.info('Logged in as anonymous');
+    //     })
+    //     .catch((error) => {
+    //       console.error('Failed to login as anonymous', error);
+    //     });
+    // }
 
     if (status === 'authenticated') {
       console.info('fetchFavoriteItems');

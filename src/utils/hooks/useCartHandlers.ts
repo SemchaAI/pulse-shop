@@ -1,4 +1,5 @@
 import { useCartStore } from '@/stores';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -11,6 +12,8 @@ export const useCartHandlers = (id: number) => {
     state.items,
   ]);
 
+  const session = useSession();
+
   const addToCartHandler = async () => {
     try {
       if (loading && items.length > 0)
@@ -18,7 +21,7 @@ export const useCartHandlers = (id: number) => {
           duration: 3000,
         });
       setProductId(id);
-      await addCartItem({ productItemId: id });
+      await addCartItem({ productItemId: id }, session.data?.user);
       toast.success('Product added to cart');
     } catch (error) {
       console.log(error);

@@ -10,6 +10,7 @@ import css from './productCard.module.scss';
 
 import { StarRate } from '@/components/entities';
 import { useCartHandlers, useFavoriteHandlers } from '@/utils/hooks';
+import { useSession } from 'next-auth/react';
 
 interface IProps {
   item: ProductItem;
@@ -17,13 +18,14 @@ interface IProps {
 }
 
 export const ProductCard = ({ item, product }: IProps) => {
+  const session = useSession();
   const { addToCartHandler, loading, productId } = useCartHandlers(item.id);
   const {
     addToFavoriteHandler,
     loading: loadingFavor,
     productId: productIdFavor,
     isFavorite,
-  } = useFavoriteHandlers(item.id);
+  } = useFavoriteHandlers(item.id, session.data?.user);
 
   return (
     <li className={css.card}>

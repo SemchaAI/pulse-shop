@@ -1,6 +1,8 @@
 import { CreateItem, IFavoriteItemUI } from '@/models/cartFavor';
+import { IUserSession } from '@/models/user';
 import { api } from '@/services/api/baseApi';
 import { getFavoriteDetails } from '@/utils/helpers';
+import { signIn } from 'next-auth/react';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -14,7 +16,10 @@ interface FavorState {
 
   fetchFavoriteItems: () => Promise<void>;
   //add type
-  addFavoriteItem: (item: CreateItem) => Promise<void>;
+  addFavoriteItem: (
+    item: CreateItem,
+    session: IUserSession | undefined
+  ) => Promise<void>;
   removeFavoriteItem: (id: number) => Promise<void>;
 }
 
@@ -57,9 +62,15 @@ export const useFavoriteStore = create<FavorState>()(
           set({ loading: false });
         }
       },
-      addFavoriteItem: async (item: CreateItem) => {
+      addFavoriteItem: async (
+        item: CreateItem,
+        session: IUserSession | undefined
+      ) => {
         set({ loading: true, error: false });
         try {
+          if (!session) {
+            await signIn('credentials', { redirect: false }, 'anon=true');
+          }
           const data = await api.favorite.addFavoriteItem(item);
           set(getFavoriteDetails(data));
         } catch (error) {

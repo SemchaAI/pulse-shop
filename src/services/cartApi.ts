@@ -2,6 +2,7 @@ import server from './api/server';
 import { ApiRoutes } from './api/constants';
 
 import type { CreateItem, ICart } from '@/models/cartFavor';
+import { IUserSession } from '@/models/user';
 
 export const getCart = async (): Promise<ICart> => {
   const { data } = await server.get<ICart>(ApiRoutes.CART);
@@ -30,7 +31,10 @@ export const removeCartItem = async (cartProductId: number): Promise<ICart> => {
   return data;
 };
 
-export const addCartItem = async (item: CreateItem): Promise<ICart> => {
+export const addCartItem = async (
+  item: CreateItem,
+  session: IUserSession | undefined
+): Promise<ICart> => {
   const { data } = await server.post<ICart>(ApiRoutes.CART, item);
 
   return data;

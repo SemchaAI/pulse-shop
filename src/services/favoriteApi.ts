@@ -2,6 +2,7 @@ import server from './api/server';
 import { ApiRoutes } from './api/constants';
 
 import type { CreateItem, IFavorite } from '@/models/cartFavor';
+import { useSession } from 'next-auth/react';
 
 export const getFavorite = async (): Promise<IFavorite> => {
   const { data } = await server.get<IFavorite>(ApiRoutes.FAVORITE);
@@ -9,19 +10,6 @@ export const getFavorite = async (): Promise<IFavorite> => {
   return data;
 };
 
-// export const updateFavoriteItemQuantity = async (
-//   favoriteProductId: number,
-//   quantity: number
-// ): Promise<IFavorite> => {
-//   const { data } = await server.patch<IFavorite>(
-//     ApiRoutes.FAVORITE + `/${favoriteProductId}`,
-//     {
-//       quantity,
-//     }
-//   );
-
-//   return data;
-// };
 export const removeFavoriteItem = async (
   favoriteProductId: number
 ): Promise<IFavorite> => {
