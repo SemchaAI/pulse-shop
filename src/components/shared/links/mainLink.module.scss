@@ -39,11 +39,11 @@
   }
 }
 .contain {
-  color: var(--text-primary);
+  color: var(--contrast);
   background: var(--primary-main);
   &:hover,
   &:focus {
-    color: var(--text-secondary);
-    background: var(--primary-light);
+    border: 1px solid var(--primary-main);
+    background-color: var(--primary-outlined-hover);
   }
 }
