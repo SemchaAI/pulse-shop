@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
+import { Role } from '@prisma/client';
 
 export const config = {
   matcher: ['/admin/:path*', '/profile/:path*'],
@@ -15,10 +16,10 @@ export async function middleware(request: NextRequest) {
   });
   console.log('middleware', session);
 
-  if (session?.role === 'GUEST') {
+  if (session?.role === Role.GUEST) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
-  if (session?.role === 'USER' && pathname.includes('/admin')) {
+  if (session?.role !== Role.ADMIN && pathname.includes('/admin')) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 }
