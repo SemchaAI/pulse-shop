@@ -7,7 +7,7 @@ import { Providers } from './providers';
 import { MainFooter, MainHeader } from '@/components/widgets';
 import Loading from './loading';
 
-import './assets/main.scss';
+import './(root)/assets/main.scss';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 const nunito = Nunito({
