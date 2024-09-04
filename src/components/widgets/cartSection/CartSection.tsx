@@ -1,7 +1,7 @@
 'use client';
 import css from './cartSection.module.scss';
 import { CardBlock, Container, MainLink } from '@/components/shared';
-import { CartItem } from '@/components/entities';
+import { CartItem, StateContainer } from '@/components/entities';
 import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
 
@@ -11,26 +11,26 @@ export const CartSection = () => {
 
   if (loading && items.length === 0) {
     return (
-      <div className={css.emptyContainer}>
+      <StateContainer>
         <Loader
           color="var(--primary-main)"
           size={36}
           className="rotate360"
         />
         <p>Loading...</p>
-      </div>
+      </StateContainer>
     );
   }
   if (items.length === 0) {
     return (
-      <div className={css.emptyContainer}>
+      <StateContainer>
         <p>Cart is empty</p>
         <Box size={36} />
-      </div>
+      </StateContainer>
     );
   }
   if (!items) {
-    <div className={css.emptyContainer}>Error. Cart wasn`t loaded</div>;
+    <StateContainer>Error. Cart wasn`t loaded</StateContainer>;
   }
   return (
     <section className={css.cart}>

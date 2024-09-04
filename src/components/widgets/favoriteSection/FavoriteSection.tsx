@@ -1,7 +1,7 @@
 'use client';
 import { Container } from '@/components/shared';
 import css from './favoriteSection.module.scss';
-import { FavoriteCard } from '@/components/entities';
+import { FavoriteCard, StateContainer } from '@/components/entities';
 import { Box, Loader } from 'lucide-react';
 import { useFavoriteStore } from '@/stores';
 
@@ -11,22 +11,22 @@ export const FavoriteSection = () => {
   );
   if (loading && items.length === 0) {
     return (
-      <div className={css.emptyContainer}>
+      <StateContainer>
         <Loader
           color="var(--primary-main)"
           size={36}
           className="rotate360"
         />
         <p>Loading...</p>
-      </div>
+      </StateContainer>
     );
   }
   if (items.length === 0) {
     return (
-      <div className={css.emptyContainer}>
+      <StateContainer>
         <p>Favorite is empty</p>
         <Box size={36} />
-      </div>
+      </StateContainer>
     );
   }
 
