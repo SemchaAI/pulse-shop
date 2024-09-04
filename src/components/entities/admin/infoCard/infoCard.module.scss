@@ -1,0 +1,30 @@
+.category {
+  display: flex;
+  gap: 5px;
+  padding: 10px 15px;
+  border: 1px solid var(--primary-main);
+
+  border-radius: 20px;
+  background-color: var(--card);
+}
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  //as line height default
+  padding: 2px 5px;
+  line-height: 16px;
+  min-width: 22px;
+  // aspect-ratio: 1 / 1;
+
+  border: 1px solid var(--primary-main);
+  border-radius: 20px;
+}
+.copyIcon {
+  @include transition;
+  cursor: pointer;
+  &:hover {
+    color: var(--primary-main);
+  }
+}
