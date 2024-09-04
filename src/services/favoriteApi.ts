@@ -1,8 +1,6 @@
 import server from './api/server';
 import { ApiRoutes } from './api/constants';
-
 import type { CreateItem, IFavorite } from '@/models/cartFavor';
-import { useSession } from 'next-auth/react';
 
 export const getFavorite = async (): Promise<IFavorite> => {
   const { data } = await server.get<IFavorite>(ApiRoutes.FAVORITE);
