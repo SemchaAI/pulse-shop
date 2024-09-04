@@ -10,7 +10,6 @@ import {
   RAM,
 } from './consts';
 import { prisma } from './prisma-client';
-import { hashSync } from 'bcrypt';
 
 async function up() {
   // await prisma.user.createMany({
@@ -32,17 +31,17 @@ async function up() {
   //   ],
   // });
   await prisma.category.createMany({
-    data: Categories,
+    data: Categories.map(({ id, ...props }) => props),
   });
   ///-------------------------------
   await prisma.color.createMany({
-    data: Colors,
+    data: Colors.map(({ id, ...props }) => props),
   });
   await prisma.memory.createMany({
-    data: Memory,
+    data: Memory.map(({ id, ...props }) => props),
   });
   await prisma.ram.createMany({
-    data: RAM,
+    data: RAM.map(({ id, ...props }) => props),
   });
   ///-------------------------------
 
