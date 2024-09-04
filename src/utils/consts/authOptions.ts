@@ -108,7 +108,24 @@ export const authOptions: AuthOptions = {
           return false;
         }
         const session = await getUserSession();
-        if (!session) return false;
+        if (!session) {
+          const userCreated = await prisma.user.create({
+            data: {
+              name: user.name || 'User #' + user.id,
+              email: user.email,
+              password: hashSync(randomUUID(), 10),
+              verified: new Date(),
+
+              provider: account?.provider,
+              providerId: account?.providerAccountId,
+              // token: randomUUID(),
+            },
+          });
+          if (!userCreated) {
+            throw new Error('User not created');
+          }
+          return true;
+        }
         console.log('signIn', user, account);
 
         const findUserByEmail = await prisma.user.findFirst({
@@ -123,20 +140,6 @@ export const authOptions: AuthOptions = {
             id: Number(session.id),
           },
         });
-
-        // const findUser = await prisma.user.findFirst({
-        //   where: {
-        //     OR: [
-        //       {
-        //         provider: account?.provider,
-        //         providerId: account?.providerAccountId,
-        //       },
-        //       {
-        //         email: user.email,
-        //       },
-        //     ],
-        //   },
-        // });
 
         if (findUser) {
           const providerUser = await prisma.user.update({
