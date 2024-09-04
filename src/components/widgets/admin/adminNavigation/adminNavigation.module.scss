@@ -1,0 +1,13 @@
+.adminNav {
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--card);
+}
+.adminList {
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+.adminItem {
+  width: fit-content;
+}

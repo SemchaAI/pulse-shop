@@ -11,3 +11,5 @@ export * from './checkoutSection/CheckoutSection';
 export * from './authSection/AuthSection';
 export * from './profileSection/ProfileSection';
 export * from './favoriteSection/FavoriteSection';
+
+export * from './admin/index';
