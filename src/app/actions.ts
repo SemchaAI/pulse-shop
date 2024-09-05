@@ -171,27 +171,39 @@ export async function registerUser(
       throw new Error('User already exists');
     }
     const session = await getUserSession();
-    if (!session) throw new Error('Unexpected error. Session not found');
+    let newUser;
+    if (!session || session.role !== Role.GUEST) {
+      newUser = await prisma.user.create({
+        data: {
+          name: body.name,
+          email: body.email,
+          password: hashSync(body.password, 10),
+          role: 'USER' as Role,
+        },
+      });
+    } else {
+      newUser = await prisma.user.update({
+        where: {
+          id: Number(session.id),
+        },
+        data: {
+          name: body.name,
+          email: body.email,
+          password: hashSync(body.password, 10),
+          role: 'USER' as Role,
+        },
+      });
+    }
 
-    const guestUser = await prisma.user.findUnique({
-      where: {
-        id: Number(session.id),
-      },
-    });
+    //throw new Error('Unexpected error. Session not found');
 
-    if (!guestUser) throw new Error('Unexpected error. Guest user not found');
+    // const guestUser = await prisma.user.findUnique({
+    //   where: {
+    //     id: Number(session.id),
+    //   },
+    // });
 
-    const newUser = await prisma.user.update({
-      where: {
-        id: guestUser.id,
-      },
-      data: {
-        name: body.name,
-        email: body.email,
-        password: hashSync(body.password, 10),
-        role: 'USER' as Role,
-      },
-    });
+    //if (!guestUser) throw new Error('Unexpected error. Guest user not found');
 
     const verificationCode = await prisma.verificationCode.create({
       data: {
