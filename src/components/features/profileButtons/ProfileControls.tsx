@@ -3,15 +3,12 @@ import { MainLink } from '@/components/shared';
 import css from './profileControls.module.scss';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
+import { Role } from '@prisma/client';
 
-interface IProps {
-  className?: string;
-}
-
-export const ProfileControls = ({ className }: IProps) => {
+export const ProfileControls = () => {
   const { data: session, status } = useSession();
 
-  if (session && session.user.role === 'USER') {
+  if (session && session.user.role !== Role.GUEST) {
     return (
       <MainLink
         mode="link"
