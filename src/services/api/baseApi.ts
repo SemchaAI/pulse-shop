@@ -7,6 +7,8 @@ import * as user from '../userApi';
 import * as rate from '../rateApi';
 import * as category from '../categoryApi';
 import * as color from '../colorApi';
+import * as memory from '../memoryApi';
+import * as ram from '../ramApi';
 
 export const api = {
   filters,
@@ -18,4 +20,6 @@ export const api = {
   rate,
   category,
   color,
+  memory,
+  ram,
 };
