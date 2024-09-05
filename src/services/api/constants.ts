@@ -6,6 +6,8 @@ export enum ApiRoutes {
 
   ADMIN_CATEGORY = 'admin/category',
   ADMIN_COLOR = 'admin/color',
+  ADMIN_MEMORY = 'admin/memory',
+  ADMIN_RAM = 'admin/ram',
 
   CART = 'cart',
   FILTER_COLORS = 'filters/colors',
