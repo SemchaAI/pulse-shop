@@ -107,6 +107,15 @@ export const authOptions: AuthOptions = {
         if (!user.email) {
           return false;
         }
+        console.log('signIn', user, account);
+
+        const findUserByEmail = await prisma.user.findFirst({
+          where: {
+            email: user.email,
+          },
+        });
+        if (findUserByEmail) return true;
+
         const session = await getUserSession();
         if (!session) {
           const userCreated = await prisma.user.create({
@@ -126,14 +135,6 @@ export const authOptions: AuthOptions = {
           }
           return true;
         }
-        console.log('signIn', user, account);
-
-        const findUserByEmail = await prisma.user.findFirst({
-          where: {
-            email: user.email,
-          },
-        });
-        if (findUserByEmail) return true;
 
         const findUser = await prisma.user.findFirst({
           where: {
