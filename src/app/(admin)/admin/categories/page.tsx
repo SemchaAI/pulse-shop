@@ -12,6 +12,11 @@ export default async function CategoriesPage() {
         },
       },
     },
+    orderBy: {
+      products: {
+        _count: 'desc',
+      },
+    },
   });
 
   return (

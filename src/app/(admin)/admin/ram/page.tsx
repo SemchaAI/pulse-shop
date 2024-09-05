@@ -1,9 +1,9 @@
-import { AddColor, InfoList, DeleteColor } from '@/components/entities';
+import { AddRam, DeleteRam, InfoList } from '@/components/entities';
 import { Container } from '@/components/shared';
 import { prisma } from '@/prisma/prisma-client';
 
 export default async function Colors() {
-  const colors = await prisma.color.findMany({
+  const ram = await prisma.ram.findMany({
     select: {
       name: true,
       _count: {
@@ -18,11 +18,12 @@ export default async function Colors() {
       },
     },
   });
+
   return (
     <Container>
-      <InfoList list={colors} />
-      <AddColor />
-      <DeleteColor />
+      <InfoList list={ram} />
+      <AddRam />
+      <DeleteRam />
     </Container>
   );
 }
