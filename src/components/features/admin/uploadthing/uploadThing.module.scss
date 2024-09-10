@@ -1,0 +1,41 @@
+.container {
+  margin-top: 10px;
+}
+.fileList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 10px;
+  @include body2Typo;
+}
+.file {
+  width: fit-content;
+
+  padding: 10px;
+  border: 1px solid var(--divider);
+  border-radius: 10px;
+
+  background-color: var(--card);
+}
+.url {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.copyIcon {
+  cursor: pointer;
+  @include transition;
+  &:hover {
+    color: var(--primary-main);
+  }
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+
+  margin: 20px auto;
+}
