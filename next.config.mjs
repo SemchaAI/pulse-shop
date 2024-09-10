@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   sassOptions: {
-    includePaths: ['./src/app/(root)/assets'],
+    includePaths: ['./src/app/assets'],
     prependData: `@import "mixins.scss";`,
   },
   images: {
