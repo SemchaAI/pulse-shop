@@ -1,0 +1,14 @@
+.infoContainer {
+}
+.fieldsContainer {
+}
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.infoField {
+  flex-grow: 1;
+}
