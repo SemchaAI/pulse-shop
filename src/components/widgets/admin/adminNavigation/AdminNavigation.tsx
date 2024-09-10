@@ -12,6 +12,8 @@ const adminPages = [
   'Colors',
   'Memory',
   'Ram',
+  'Product',
+  'Item',
 ];
 
 export const AdminNavigation = ({}: IProps) => {
