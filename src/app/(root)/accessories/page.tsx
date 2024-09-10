@@ -2,7 +2,7 @@ import { Container } from '@/components/shared';
 import { Filters, ProductsSection } from '@/components/widgets';
 
 import { findProductsWithParams } from '@/utils/helpers/findProductsWithParams';
-import css from '../assets/home/page.module.scss';
+import css from '@/app/assets/home/page.module.scss';
 import { Box } from 'lucide-react';
 import { IParams } from '@/models/searchWithParams';
 
