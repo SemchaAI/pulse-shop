@@ -8,6 +8,7 @@ import { OrderStatus, Prisma, Role } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { redirect } from 'next/navigation';
+import { UTApi } from 'uploadthing/server';
 
 export async function createOrder(data: CheckoutRequest) {
   try {
@@ -229,3 +230,13 @@ export async function registerUser(
 export async function navigate(data: string) {
   redirect(`${data}`);
 }
+
+const utapi = new UTApi();
+
+export const deleteUTFiles = async (files: string[]) => {
+  try {
+    await utapi.deleteFiles(files);
+  } catch (error) {
+    console.error('UTAPI: Error deleting files', error);
+  }
+};
