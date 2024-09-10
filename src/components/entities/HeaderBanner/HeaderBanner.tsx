@@ -15,21 +15,10 @@ import css from './headerBanner.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from '@/components/shared';
+import { BannerSlide } from '@prisma/client';
 
 type PropType = {
-  slides: {
-    id: number;
-    imgSrc: {
-      desktop: string;
-      tablet: string;
-      mobile: string;
-    };
-    base64: string;
-    alt: string;
-    width: number;
-    height: number;
-    href: string;
-  }[];
+  slides: BannerSlide[];
   options?: EmblaOptionsType;
 };
 
@@ -46,7 +35,9 @@ export const HeaderBanner: React.FC<PropType> = (props) => {
     onPrevButtonClick,
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
+  console.log('slides', slides);
 
+  if (slides.length === 0) return null;
   return (
     <section className={css.section}>
       <Container>
@@ -68,28 +59,28 @@ export const HeaderBanner: React.FC<PropType> = (props) => {
                     >
                       <picture className={css.emblaSlideLink}>
                         <source
-                          srcSet={obj.imgSrc.desktop}
+                          srcSet={obj.desktop}
                           type="image/webp"
                           media="(min-width: 1024px)"
                           width={obj.width}
                           height={obj.height}
                         />
                         <source
-                          srcSet={obj.imgSrc.tablet}
+                          srcSet={obj.tablet}
                           type="image/webp"
                           media="(min-width: 479px)"
                           width={1024}
                           height={428}
                         />
                         <source
-                          srcSet={obj.imgSrc.mobile}
+                          srcSet={obj.mobile}
                           type="image/webp"
                           media="(min-width: 360px)"
                           width={460}
                           height={460}
                         />
                         <Image
-                          src={obj.imgSrc.mobile}
+                          src={obj.mobile}
                           width={460}
                           height={460}
                           quality={75}
