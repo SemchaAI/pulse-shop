@@ -138,7 +138,7 @@ model FavoriteProduct {
 model Product {
   id Int @id @default(autoincrement())
 
-  totalRating Float
+  totalRating Float  @default(0)
   description String
 
   colors Color[]
@@ -179,7 +179,7 @@ model ProductItem {
   product   Product @relation(fields: [productId], references: [id])
   productId Int
 
-  title    String
+  title    String @unique
   img      String
   price    Int
   oldPrice Int?
@@ -200,6 +200,8 @@ model ProductItem {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([colorId, memoryId, ramId])
 }
 
 model ProductInfo {
@@ -328,4 +330,21 @@ model VerificationCode {
   createdAt DateTime @default(now())
 
   @@unique([userId, code])
+}
+
+model BannerSlide {
+  id      Int    @id @default(autoincrement())
+  desktop String
+  tablet  String
+  mobile  String
+
+  base64 String
+
+  alt String
+
+  width  Int
+  height Int
+
+  priority Boolean
+  href     String
 }
