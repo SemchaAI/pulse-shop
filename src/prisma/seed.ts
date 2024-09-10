@@ -45,18 +45,20 @@ async function up() {
   });
   ///-------------------------------
 
-  for (let i = 0; i < Products.length; i++) {
+  const products = Products.map(({ id, ...props }) => props);
+
+  for (let i = 0; i < products.length; i++) {
     await prisma.product.create({
       data: {
-        ...Products[i],
+        ...products[i],
         colors: {
-          connect: Products[i].colors,
+          connect: products[i].colors,
         },
         ram: {
-          connect: Products[i].ram,
+          connect: products[i].ram,
         },
         memory: {
-          connect: Products[i].memory,
+          connect: products[i].memory,
         },
       },
     });
@@ -116,7 +118,7 @@ async function up() {
 }
 
 async function down() {
-  await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`;
+  // await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Color" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Memory" RESTART IDENTITY CASCADE`;
@@ -125,8 +127,8 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "ProductInfo" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "ProductImages" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
-  await prisma.$executeRaw`TRUNCATE TABLE "CartProduct" RESTART IDENTITY CASCADE`;
+  // await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
+  // await prisma.$executeRaw`TRUNCATE TABLE "CartProduct" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {
