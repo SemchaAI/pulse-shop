@@ -46,6 +46,7 @@ interface validate {
 }
 
 export type ValidationTypes =
+  | null
   | typeof required
   | typeof Min5
   | typeof emailValidation
