@@ -12,3 +12,5 @@ export * from './formField/FieldPhone';
 export * from './profileButtons/ProfileControls';
 
 export * from './pagination/Pagination';
+
+export * from './admin/index';
