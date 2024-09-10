@@ -1,0 +1,102 @@
+.searchBlock {
+  margin-top: 20px;
+  position: relative;
+}
+.searchBlockTitle {
+  text-align: center;
+  @include headline32Typo;
+}
+.inputBlock {
+  margin: 10px auto;
+  position: relative;
+  max-width: 600px;
+}
+.input {
+}
+.icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 12px);
+
+  @include transition;
+
+  cursor: none;
+
+  &:hover,
+  &:focus {
+    color: var(--primary-main);
+  }
+}
+.closeIcon {
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--error-main);
+  }
+}
+.searchList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0px;
+  justify-content: space-between;
+  align-items: center;
+}
+.searchItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  position: relative;
+
+  max-width: 350px;
+  min-height: 300px;
+  padding: 25px;
+  border: 1px solid;
+  background-color: var(--card);
+}
+.searchInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.copy {
+  cursor: pointer;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+
+  @include transition;
+
+  &:hover,
+  &:focus {
+    color: var(--primary-main);
+  }
+}
+.itemId {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: var(--primary-main);
+  }
+}
+.skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 300px;
+
+  @include headline32Typo;
+  color: var(--primary-main);
+  background-color: var(--card);
+
+  border-radius: 5px;
+}
