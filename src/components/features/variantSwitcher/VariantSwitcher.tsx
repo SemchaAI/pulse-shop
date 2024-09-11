@@ -59,7 +59,7 @@ export const VariantSwitcher = ({ product, productItem }: IProps) => {
       try {
         // console.log('query', query, variants);
         const id = await api.variants.getVariant(query);
-        console.log('id', id);
+        // console.log('id', id);
         router.push(`/product/${product.id}/${id}`);
       } catch (error) {
         console.log(error);

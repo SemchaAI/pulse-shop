@@ -26,7 +26,7 @@ export const Search = () => {
       const search = async () => {
         try {
           const data = await api.products.search(query);
-          console.log('data', data, focused);
+          // console.log('data', data, focused);
           setProducts(data);
         } catch (error) {
           toast.error('Search error');

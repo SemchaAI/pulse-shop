@@ -67,7 +67,7 @@ export const DeleteProductItem = ({ colors, memory, ram }: IProps) => {
           memoryId: data.memoryId ? Number(data.memoryId) : null,
         } as IDeleteProductItem);
 
-        console.log('data', data);
+        //  console.log('data', data);
       }}
     ></SimpleForm2>
   );

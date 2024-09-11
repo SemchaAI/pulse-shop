@@ -30,7 +30,7 @@ export const CartItem = ({
   const url = process.env.NEXT_PUBLIC_IMAGES_HOST;
 
   const clickQuantityHandler = (variant: PlusMinus, item: ICartItemUI) => {
-    console.log('clickQuantityHandler', item.cnt, item.quantity);
+    //console.log('clickQuantityHandler', item.cnt, item.quantity);
     if (variant === PlusMinus.plus && item.cnt > item.quantity) {
       updateItemQuantity(item.id, item.quantity + 1);
     } else if (variant === PlusMinus.minus && item.quantity > 1) {

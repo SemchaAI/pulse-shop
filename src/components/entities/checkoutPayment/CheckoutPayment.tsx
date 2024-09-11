@@ -14,7 +14,7 @@ export const CheckoutPayment = ({ totalAmount, loading }: IProps) => {
   const DeliveryPrice = 50;
   const totalPrice = totalAmount + NDS + DeliveryPrice;
 
-  console.log('loading', loading);
+  //console.log('loading', loading);
   return (
     <CardBlock>
       <div className={css.paymentTotal}>

@@ -5,7 +5,7 @@ import { BannerSlide } from '@prisma/client';
 type TBannerSlide = Omit<BannerSlide, 'id'>;
 
 export const createOne = async (slide: TBannerSlide): Promise<TBannerSlide> => {
-  console.log('slide', slide);
+  //console.log('slide', slide);
   const { data } = await server.post<TBannerSlide>(
     ApiRoutes.ADMIN_BANNER,
     slide

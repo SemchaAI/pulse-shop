@@ -43,7 +43,7 @@ export const SendRate = ({ productId, user, isRated }: IProps) => {
     );
 
   const submitHandler: SubmitHandler<RatingForm> = async (data) => {
-    console.log('data', data);
+    // console.log('data', data);
     try {
       if (isRated) {
         await api.rate.updateRating({

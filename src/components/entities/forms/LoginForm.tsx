@@ -24,14 +24,14 @@ export const LoginForm = ({ className }: IProps) => {
 
   const container = `${className}`;
   const submitHandler = async (data: LogForm) => {
-    console.log('data', data);
+    // console.log('data', data);
     try {
       const response = await signIn('credentials', {
         email: data.email,
         password: data.password,
         redirect: false,
       });
-      console.log('response', response);
+      //  console.log('response', response);
       if (!response?.ok) {
         throw Error();
       }
@@ -39,7 +39,7 @@ export const LoginForm = ({ className }: IProps) => {
         navigate('/profile');
       }
     } catch (error) {
-      console.log('error', error);
+      //  console.log('error', error);
       toast.error('Auth error. Please try again.');
     }
   };

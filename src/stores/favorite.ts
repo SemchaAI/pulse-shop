@@ -36,7 +36,7 @@ export const useFavoriteStore = create<FavorState>()(
         set({ loading: true, error: false }, false, 'fetchFavoriteItems');
         try {
           const data = await api.favorite.getFavorite();
-          console.log(data);
+          //console.log(data);
           set(getFavoriteDetails(data));
           // set({ items: data.cartProduct, totalAmount: data.totalAmount });
         } catch (error) {

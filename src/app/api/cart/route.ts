@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     const session = await getUserSession();
     if (!session) return NextResponse.json('Auth error', { status: 401 });
     const userCart = await cartHelper(Number(session.id));
-    console.log('userCart', userCart);
+    // console.log('userCart', userCart);
     const data = (await req.json()) as CreateItem;
     const findCartItem = await prisma.cartProduct.findFirst({
       where: {
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
         productItemId: data.productItemId,
       },
     });
-    console.log('findCartItem', findCartItem);
+    //  console.log('findCartItem', findCartItem);
 
     if (findCartItem) {
       await prisma.cartProduct.update({

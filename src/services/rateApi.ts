@@ -12,7 +12,7 @@ export const getAll = async (query: string): Promise<IRating> => {
   const { data } = await server.get<IRating>(ApiRoutes.RATE, {
     params: { query },
   });
-  console.log('data', data);
+  // console.log('data', data);
   return data;
 };
 

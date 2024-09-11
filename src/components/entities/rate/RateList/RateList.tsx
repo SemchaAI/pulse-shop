@@ -33,7 +33,7 @@ export const RateList = ({ productId }: IProps) => {
       try {
         const { rates, totalPages } = await api.rate.getAll(query);
         setRates(rates);
-        console.log('totalPages', totalPages);
+        //console.log('totalPages', totalPages);
         setTotalPages(totalPages);
       } catch (error) {
         console.log(error);

@@ -10,6 +10,6 @@ export const getVariant = async (query: string): Promise<number> => {
     params: { query },
   });
   const id = data.productItem[0].id;
-  console.log('getVariant id', id);
+  // console.log('getVariant id', id);
   return id;
 };

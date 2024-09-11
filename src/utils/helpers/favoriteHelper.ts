@@ -6,7 +6,7 @@ export const favoriteHelper = async (userId: number) => {
       userId,
     },
   });
-  console.log('userFavorite', userFavorite);
+  // console.log('userFavorite', userFavorite);
   if (!userFavorite) {
     userFavorite = await prisma.favorite.create({
       data: {

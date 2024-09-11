@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
-  console.log('middleware', session);
+  console.log('middleware');
 
   if (session?.role === Role.GUEST) {
     return NextResponse.redirect(new URL('/login', request.url));

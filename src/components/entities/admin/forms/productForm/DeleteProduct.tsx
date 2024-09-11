@@ -23,7 +23,7 @@ export const DeleteProduct = () => {
       request={async (data) => {
         // WARNING MY TYPESCRIPT DOESN`T GOOD ENOUGH TO HANDLE THIS TYPES
         await api.products.deleteOne(data.productId);
-        console.log('data', data);
+        //   console.log('data', data);
       }}
     ></SimpleForm2>
   );

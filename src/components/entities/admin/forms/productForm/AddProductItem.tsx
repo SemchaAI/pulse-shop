@@ -107,7 +107,7 @@ export const AddProductItem = ({ colors, memory, ram }: IProps) => {
       ]}
       title="Add Product Item"
       request={async (data) => {
-        console.log('data', data);
+        // console.log('data', data);
         await api.products.createOneProductItem({
           ...data,
           oldPrice: data.oldPrice ? Number(data.oldPrice) : null,

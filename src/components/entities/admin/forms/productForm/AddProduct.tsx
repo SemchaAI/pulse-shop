@@ -42,7 +42,7 @@ export const AddProduct = ({ categories }: IProps) => {
           }
         );
         // await api.ram.createOne(data);
-        console.log('data', data);
+        // console.log('data', data);
       }}
     ></SimpleForm2>
   );
