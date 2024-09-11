@@ -15,4 +15,6 @@ export * from './productControls/ProductControls';
 
 export * from './pagination/Pagination';
 
+export * from './verification/Verification';
+
 export * from './admin/index';

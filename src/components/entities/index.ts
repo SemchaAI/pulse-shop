@@ -20,6 +20,8 @@ export * from './favoriteCard/FavoriteCard';
 export * from './AnonymousSessionProvider/AnonymousSessionProvider';
 export * from './HeaderBanner/HeaderBanner';
 
+export * from './countdown/Countdown';
+
 export * from './stateContainer/StateContainer';
 
 export * from './admin/index';
