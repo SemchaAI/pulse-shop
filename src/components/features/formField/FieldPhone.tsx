@@ -56,7 +56,7 @@ export const FieldPhone = ({
         <Controller
           name={id}
           control={control}
-          rules={validation}
+          rules={validation ? validation : {}}
           render={({ field }) => (
             <Input
               id={id}
