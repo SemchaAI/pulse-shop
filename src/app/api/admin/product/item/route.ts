@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       }
     );
 
-  await prisma.productItem.create({
+  const newProductItem = await prisma.productItem.create({
     data: {
       title: body.title,
       cnt: Number(body.cnt),
@@ -47,6 +47,39 @@ export async function POST(req: NextRequest) {
       ramId: body.ramId ? Number(body.ramId) : null,
 
       createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  });
+  if (!newProductItem)
+    return NextResponse.json(
+      { message: 'Product item not created' },
+      { status: 400 }
+    );
+  // const product = await prisma.product.findUnique({
+  //   where: {
+  //     id: Number(body.productId),
+  //   },
+  // });
+  const productUpdated = await prisma.product.update({
+    where: {
+      id: Number(body.productId),
+    },
+    data: {
+      colors: {
+        connect: {
+          id: Number(body.colorId),
+        },
+      },
+      memory: {
+        connect: {
+          id: Number(body.memoryId),
+        },
+      },
+      ram: {
+        connect: {
+          id: Number(body.ramId),
+        },
+      },
       updatedAt: new Date(),
     },
   });
@@ -92,28 +125,80 @@ export async function DELETE(req: NextRequest) {
       productItemId: findProduct.id,
     },
   });
-  const images = await prisma.productImages.findFirst({
+
+  const findProducts = await prisma.productItem.findMany({
     where: {
-      productItemId: findProduct.id,
+      productId: Number(body.productId),
+      colorId: body.colorId ? Number(body.colorId) : null,
     },
   });
 
-  const utapi = new UTApi();
-
-  if (images) {
-    await utapi.deleteFiles([findProduct.img, ...images.thumbnails]);
-    await prisma.productImages.deleteMany({
+  if (findProducts.length === 1) {
+    const images = await prisma.productImages.findFirst({
       where: {
         productItemId: findProduct.id,
       },
     });
-  } else {
-    const res = await utapi.deleteFiles([findProduct.img]);
-    console.log('res', res);
+
+    const utapi = new UTApi();
+
+    if (images) {
+      await utapi.deleteFiles([findProduct.img, ...images.thumbnails]);
+      await prisma.productImages.deleteMany({
+        where: {
+          productItemId: findProduct.id,
+        },
+      });
+    } else {
+      const res = await utapi.deleteFiles([findProduct.img]);
+      // console.log('res', res);
+    }
   }
 
   await prisma.productItem.delete({
     where: { id: findProduct.id },
+  });
+  const productItems = await prisma.productItem.findMany({
+    where: {
+      productId: Number(body.productId),
+    },
+  });
+  const colors: (number | null)[] = [];
+  const ram: (number | null)[] = [];
+  const memory: (number | null)[] = [];
+  let colorFlag = false;
+  let ramFlag = false;
+  let memoryFlag = false;
+
+  productItems.map((item) => {
+    colors.push(item.colorId);
+    ram.push(item.ramId);
+    memory.push(item.memoryId);
+  });
+
+  if (!colors.includes(Number(body.colorId))) {
+    colorFlag = true;
+  }
+  if (!ram.includes(Number(body.ramId))) {
+    ramFlag = true;
+  }
+  if (!memory.includes(Number(body.memoryId))) {
+    memoryFlag = true;
+  }
+
+  await prisma.product.update({
+    where: {
+      id: Number(body.productId),
+    },
+    data: {
+      ...(colorFlag && {
+        colors: { disconnect: [{ id: Number(body.colorId) }] },
+      }),
+      ...(memoryFlag && {
+        memory: { disconnect: [{ id: Number(body.memoryId) }] },
+      }),
+      ...(ramFlag && { ram: { disconnect: [{ id: Number(body.ramId) }] } }),
+    },
   });
 
   return NextResponse.json(
