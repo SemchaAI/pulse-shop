@@ -1,9 +1,21 @@
 .footer {
+  position: relative;
+  height: 80px;
   width: 100%;
   background-color: var(--card);
   grid-area: footer;
-  border-top: 1px solid var(--divider);
+  // border-top: 1px solid var(--divider);
 }
+.footer::after {
+  content: '';
+  border-bottom: 1px solid var(--divider);
+  height: 0;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .footerContainer {
   height: 80px;
   display: flex;

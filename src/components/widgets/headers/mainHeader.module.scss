@@ -1,9 +1,21 @@
 .header {
+  position: relative;
+  max-height: 70px;
   background-color: var(--card);
   padding: 10px 0 9px 0;
   grid-area: header;
-  border-bottom: 1px solid var(--divider);
+  // border-bottom: 1px solid var(--divider);
 }
+.header::after {
+  content: '';
+  border-bottom: 1px solid var(--divider);
+  height: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 .headerContainer {
   width: 100%;
   display: flex;
