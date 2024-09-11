@@ -12,3 +12,9 @@ export const getUser = async (): Promise<IProps> => {
 
   return data;
 };
+
+export const updateCode = async ({ id }: { id: string }) => {
+  const { data } = await server.patch(ApiRoutes.REACTIVATION, { id });
+
+  return data;
+};

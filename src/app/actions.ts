@@ -7,6 +7,7 @@ import { sendActivationMail, sendOrderMail } from '@/utils/mail';
 import { OrderStatus, Prisma, Role } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomUUID } from 'crypto';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { UTApi } from 'uploadthing/server';
 
@@ -219,7 +220,12 @@ export async function registerUser(
     const activationUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/activation?link=${verificationCode.code}`;
 
     sendActivationMail(newUser.email, activationUrl);
-
+    const cookieStore = cookies();
+    cookieStore.set('newUser', `${newUser.id}`);
+    // return {
+    //   id: newUser.id,
+    //   isRegistered: true,
+    // };
     return true;
   } catch (error) {
     console.log(`[REGISTER USER] server error ${error}`);
