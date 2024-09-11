@@ -43,16 +43,16 @@ export const Field = ({
           myType={myType}
           placeholder={placeholder}
           autoComplete={autoComplete}
-          {...register(id, validation)}
+          value={value}
+          {...register(id, validation ? validation : {})}
         />
-
-        {value && (
+        {value && myType !== 'number' ? (
           <X
             className={css.icon}
             size={24}
             onClick={onClickClear}
           />
-        )}
+        ) : null}
       </div>
 
       <div className={css.error}>{error}</div>
