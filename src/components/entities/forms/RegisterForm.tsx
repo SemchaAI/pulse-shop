@@ -11,12 +11,14 @@ import { MainBtn, MainLink } from '@/components/shared';
 import { RegistrationForm } from '@/models/forms';
 import toast from 'react-hot-toast';
 import { registerUser } from '@/app/actions';
+import { useRouter } from 'next/navigation';
 
 interface IProps {
   className?: string;
 }
 
 export const RegisterForm = ({ className }: IProps) => {
+  const router = useRouter();
   const form = useForm<RegistrationForm>({
     defaultValues: {
       email: '',
@@ -39,6 +41,7 @@ export const RegisterForm = ({ className }: IProps) => {
         position: 'top-center',
         icon: '👏',
       });
+      router.push('/verification');
     } catch (error) {
       console.log('error', error);
       toast.error('Auth error. Please try again.');
