@@ -11,6 +11,7 @@ import css from './productCard.module.scss';
 import { StarRate } from '@/components/entities';
 import { useCartHandlers, useFavoriteHandlers } from '@/utils/hooks';
 import { useSession } from 'next-auth/react';
+import { ProductControls } from '@/components/features';
 
 interface IProps {
   item: ProductItem;
@@ -64,7 +65,8 @@ export const ProductCard = ({ item, product }: IProps) => {
         )}
         <p>Price: {item.price} MDL</p>
       </div>
-      <div className={css.cardControls}>
+      <ProductControls item={item} />
+      {/* <div className={css.cardControls}>
         <MainBtn
           className={css.cardBtn}
           version="contain"
@@ -102,7 +104,7 @@ export const ProductCard = ({ item, product }: IProps) => {
             />
           )}
         </MainBtn>
-      </div>
+      </div> */}
     </li>
   );
 };

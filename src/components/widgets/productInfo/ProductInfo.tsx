@@ -3,7 +3,7 @@ import type { ProductInfo as ProductInfoType } from '@prisma/client';
 import type { EmblaOptionsType } from 'embla-carousel';
 
 import { EmblaCarousel } from '@/components/entities';
-import { VariantSwitcher } from '@/components/features';
+import { ProductControls, VariantSwitcher } from '@/components/features';
 
 import css from './ProductInfo.module.scss';
 import { notFound } from 'next/navigation';
@@ -51,6 +51,7 @@ export const ProductInfo = ({ product, productItem, gallery }: IProps) => {
             />
           </div>
           <div className={css.productControlsContainer}>
+            <ProductControls item={productItem} />
             {/* <ProductControls product={product} /> */}
           </div>
         </div>

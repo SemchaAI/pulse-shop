@@ -1,7 +1,9 @@
 export * from './headerControls/HeaderControls';
 export * from './bar/Bar';
 export * from './productCarousel/ProductCarousel';
+
 export * from './productCard/ProductCard';
+
 export * from './cartItem/CartItem';
 export * from './checkoutPayment/CheckoutPayment';
 export * from './forms/profileForm/ProfileForm';

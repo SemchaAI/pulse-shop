@@ -1,0 +1,18 @@
+.cardControls {
+  display: flex;
+  gap: 10px;
+}
+.cardBtn {
+  align-self: flex-end;
+  flex-grow: 1;
+  @include body2Typo;
+}
+.cardBtnText {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.favorite {
+  stroke: var(--error-main);
+  fill: var(--error-main);
+}
