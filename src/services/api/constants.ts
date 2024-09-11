@@ -14,6 +14,8 @@ export enum ApiRoutes {
   ADMIN_PRODUCT_ITEM = 'admin/product/item',
   ADMIN_PRODUCT_IMAGES = 'admin/product/images',
 
+  REACTIVATION = 'activation',
+
   CART = 'cart',
   FILTER_COLORS = 'filters/colors',
   FILTER_MEMORY = 'filters/memory',
