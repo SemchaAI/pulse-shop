@@ -5,7 +5,7 @@ import type { EmblaOptionsType } from 'embla-carousel';
 import { EmblaCarousel } from '@/components/entities';
 import { ProductControls, VariantSwitcher } from '@/components/features';
 
-import css from './ProductInfo.module.scss';
+import css from './productInfo.module.scss';
 import { notFound } from 'next/navigation';
 
 interface IProps extends IProductInfo {
