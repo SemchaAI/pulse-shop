@@ -4,12 +4,16 @@ import css from './header.module.scss';
 
 import { AlignJustify, X } from 'lucide-react';
 import { HeaderControls } from '@/components/entities';
+import { MainLink } from '@/components/shared';
 
 export const HeaderAdaptive = () => {
   const [active, setActive] = useState(false);
   const classes = `${css.headerContainer} ${
     active ? `${css.headerContainerActive} fadeIn` : ''
   }`;
+
+  const links = ['smartphones', 'tablets', 'accessories'];
+
   return (
     <>
       {active && (
@@ -31,7 +35,24 @@ export const HeaderAdaptive = () => {
                 height={24}
               />
             </div>
-            <div>some links</div>
+            <nav className={css.nav}>
+              <ul className={css.navList}>
+                {links.map((link) => (
+                  <li
+                    className={css.navItem}
+                    key={link}
+                  >
+                    <MainLink
+                      mode="link"
+                      version="text"
+                      to={`/admin/${link}`}
+                    >
+                      {link}
+                    </MainLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </>
         )}
         <HeaderControls />
