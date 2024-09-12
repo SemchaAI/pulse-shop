@@ -18,6 +18,7 @@ import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { api } from '@/services/api/baseApi';
+import { Role } from '@prisma/client';
 
 export const CheckoutSection = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -33,7 +34,7 @@ export const CheckoutSection = () => {
       form.setValue('phone', data.phone || '');
       form.setValue('email', data.email);
     };
-    if (session) {
+    if (session && session.user.role !== Role.GUEST) {
       fetchUserInfo();
     }
   }, [session]);
