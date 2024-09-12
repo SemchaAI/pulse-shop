@@ -108,6 +108,7 @@
 
     top: 0;
     left: 0;
+    overflow: hidden;
     z-index: var(--z-mob-menu);
     background-color: var(--body-bg);
   }
