@@ -1,12 +1,16 @@
 'use client';
 import Image from 'next/image';
-import css from './slideList.module.scss';
-import { BannerSlide } from '@prisma/client';
-import { MainBtn } from '@/components/shared';
-import { Trash } from 'lucide-react';
-import { deleteUTFiles } from '@/app/actions';
 import toast from 'react-hot-toast';
+import { Trash } from 'lucide-react';
+
+import { MainBtn } from '@/components/shared';
+
+import { deleteUTFiles } from '@/app/actions';
 import { api } from '@/services/api/baseApi';
+
+import type { BannerSlide } from '@prisma/client';
+
+import css from './slideList.module.scss';
 
 interface IProps {
   slides: BannerSlide[];

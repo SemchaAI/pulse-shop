@@ -1,11 +1,9 @@
 'use client';
-
-import { Category } from '@prisma/client';
-
+import Link from 'next/link';
 import { useCategoryStore } from '@/stores';
 
+import type { Category } from '@prisma/client';
 import css from './bar.module.scss';
-import Link from 'next/link';
 
 interface Props {
   categories: Category[];

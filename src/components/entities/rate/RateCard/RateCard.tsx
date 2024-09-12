@@ -1,5 +1,6 @@
-import { Rating } from '@prisma/client';
 import { StarRate } from '../StarRate';
+
+import type { Rating } from '@prisma/client';
 import css from './rateCard.module.scss';
 
 export const RateCard = ({ id, rate, message, userId, name }: Rating) => {

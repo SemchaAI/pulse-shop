@@ -1,5 +1,9 @@
 'use client';
-import { EmblaOptionsType } from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { Container } from '@/components/shared';
 import {
   DotButton,
   useDotButton,
@@ -9,13 +13,11 @@ import {
   NextButton,
   usePrevNextButtons,
 } from '@/components/features/CarouselControls/ArrowButtons';
-import useEmblaCarousel from 'embla-carousel-react';
+
+import type { BannerSlide } from '@prisma/client';
+import type { EmblaOptionsType } from 'embla-carousel';
 
 import css from './headerBanner.module.scss';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Container } from '@/components/shared';
-import { BannerSlide } from '@prisma/client';
 
 type PropType = {
   slides: BannerSlide[];
@@ -47,7 +49,7 @@ export const HeaderBanner: React.FC<PropType> = (props) => {
             ref={emblaRef}
           >
             <div className={css.emblaContainer}>
-              {slides.map((obj) => (
+              {slides.map((obj, index) => (
                 <div
                   className={css.emblaSlide}
                   key={obj.id}
@@ -87,6 +89,7 @@ export const HeaderBanner: React.FC<PropType> = (props) => {
                           alt={obj.alt}
                           blurDataURL={obj.base64}
                           placeholder="blur"
+                          priority={index === 0 ? true : false}
                           // priority
                         />
                       </picture>

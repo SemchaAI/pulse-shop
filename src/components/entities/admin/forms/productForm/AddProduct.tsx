@@ -2,7 +2,7 @@
 import { SimpleForm2 } from '@/components/entities';
 import { api } from '@/services/api/baseApi';
 import { required } from '@/utils/consts/validationObjects';
-import { Category } from '@prisma/client';
+import type { Category } from '@prisma/client';
 
 interface IProps {
   categories: Category[];

@@ -3,13 +3,13 @@ import { prisma } from '@/prisma/prisma-client';
 import { OrderSuccessTemplate } from '@/utils/email-templates/OrderSuccess';
 import { SucceededOrderMail } from '@/utils/mail';
 import {
-  CartProduct,
-  Color,
-  Memory,
+  type CartProduct,
+  type Color,
+  type Memory,
   OrderStatus,
-  Product,
-  ProductItem,
-  Ram,
+  type Product,
+  type ProductItem,
+  type Ram,
 } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 interface IItem extends CartProduct {

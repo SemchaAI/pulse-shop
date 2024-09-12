@@ -3,7 +3,7 @@ import { SimpleForm2 } from '@/components/entities';
 import { IDeleteProductItem, IProductItem } from '@/models/product';
 import { api } from '@/services/api/baseApi';
 import { required } from '@/utils/consts/validationObjects';
-import { Color, Memory, Ram } from '@prisma/client';
+import type { Color, Memory, Ram } from '@prisma/client';
 
 interface IProps {
   colors: Color[];

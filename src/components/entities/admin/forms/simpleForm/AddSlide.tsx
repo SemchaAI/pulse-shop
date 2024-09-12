@@ -2,7 +2,7 @@
 import { SimpleForm2 } from '@/components/entities';
 import { api } from '@/services/api/baseApi';
 import { required } from '@/utils/consts/validationObjects';
-import { BannerSlide } from '@prisma/client';
+import type { BannerSlide } from '@prisma/client';
 
 export const AddSlide = () => {
   const defaultValues: Omit<BannerSlide, 'id'> = {
