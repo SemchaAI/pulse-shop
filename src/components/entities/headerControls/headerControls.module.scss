@@ -174,9 +174,12 @@
   }
   .navButtons {
     width: 100%;
-    // padding: 20px;
-    background-color: var(--surface);
     justify-content: space-between;
+    padding: 20px 5px 0 5px;
+
+    border-top: 1px solid var(--divider);
+
+    background-color: var(--surface);
   }
 }
 @media (max-width: 425px) {
