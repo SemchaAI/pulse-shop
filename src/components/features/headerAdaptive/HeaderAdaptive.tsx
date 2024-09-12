@@ -5,9 +5,11 @@ import css from './header.module.scss';
 import { AlignJustify, X } from 'lucide-react';
 import { HeaderControls } from '@/components/entities';
 import { MainLink } from '@/components/shared';
+import { useScrollControl } from '@/utils/hooks';
 
 export const HeaderAdaptive = () => {
   const [active, setActive] = useState(false);
+  useScrollControl(active);
   const classes = `${css.headerContainer} ${
     active ? `${css.headerContainerActive} fadeIn` : ''
   }`;
