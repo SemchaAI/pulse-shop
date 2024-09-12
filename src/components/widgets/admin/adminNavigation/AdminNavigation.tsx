@@ -1,5 +1,6 @@
 import { Container, MainLink } from '@/components/shared';
 import css from './adminNavigation.module.scss';
+import { folderPaths } from '@/utils/helpers/nextPath';
 
 interface IProps {
   className?: string;
@@ -7,7 +8,6 @@ interface IProps {
 
 const adminPages = [
   'Categories',
-  'Products',
   'Banner',
   'Colors',
   'Memory',
@@ -17,11 +17,13 @@ const adminPages = [
 ];
 
 export const AdminNavigation = ({}: IProps) => {
+  const nav = folderPaths('src/app/(admin)/admin/');
+
   return (
     <nav className={css.adminNav}>
       <Container>
         <ul className={css.adminList}>
-          {adminPages.map((page) => (
+          {nav.map((page) => (
             <li
               className={css.adminItem}
               key={page}
@@ -29,7 +31,7 @@ export const AdminNavigation = ({}: IProps) => {
               <MainLink
                 mode="button"
                 version="contain"
-                to={`/admin/${page.toLowerCase()}`}
+                to={`/admin/${page}`}
               >
                 {page}
               </MainLink>
