@@ -9,15 +9,6 @@ export const HeaderControls = () => {
   return (
     <>
       <div className={css.navButtons}>
-        {/* {user.role === 'ADMIN' && (
-          <MainLink
-            mode="link"
-            version="text"
-            to={'/admin'}
-          >
-            Admin
-          </MainLink>
-        )} */}
         <MainLink
           mode="link"
           version="text"
