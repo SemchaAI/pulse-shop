@@ -219,7 +219,7 @@ export async function registerUser(
 
     const activationUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/activation?link=${verificationCode.code}`;
 
-    sendActivationMail(newUser.email, activationUrl);
+    await sendActivationMail(newUser.email, activationUrl);
     const cookieStore = cookies();
     cookieStore.set('newUser', `${newUser.id}`);
     // return {
