@@ -14,6 +14,7 @@ export const ProfileControls = () => {
         mode="link"
         to={'/profile'}
         version="text"
+        label="to profile page"
       >
         {session.user.image ? (
           <Image
@@ -41,6 +42,7 @@ export const ProfileControls = () => {
       mode="button"
       to={'/login'}
       version="contain"
+      label="Sign in"
     >
       Sign in
     </MainLink>

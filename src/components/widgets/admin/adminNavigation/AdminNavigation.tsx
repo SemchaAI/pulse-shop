@@ -32,6 +32,7 @@ export const AdminNavigation = ({}: IProps) => {
                 mode="button"
                 version="contain"
                 to={`/admin/${page}`}
+                label={page}
               >
                 {page}
               </MainLink>

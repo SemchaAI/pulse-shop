@@ -28,6 +28,7 @@ export const ChangeTheme = () => {
     <button
       className={css.theme}
       onClick={onClick}
+      aria-label={theme === 'light' ? 'dark theme' : 'light theme'}
     >
       {theme === 'light' ? <Moon /> : <Sun />}
     </button>

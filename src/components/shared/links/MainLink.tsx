@@ -4,6 +4,7 @@ import css from './mainLink.module.scss';
 
 export interface ILink {
   to: string;
+  label: string;
   mode?: 'link' | 'button';
   version?: 'text' | 'outline' | 'contain';
   children?: React.ReactNode;
@@ -16,6 +17,7 @@ export const MainLink = ({
   mode = 'link',
   version = 'text',
   className,
+  label,
 }: ILink) => {
   const classes = `${css.link} ${mode === 'button' ? css.button : ''} ${
     css[version]
@@ -24,6 +26,7 @@ export const MainLink = ({
     <Link
       href={to}
       className={classes}
+      aria-label={label}
     >
       {children}
     </Link>

@@ -59,6 +59,7 @@ export const HomeProductsList = ({ category }: IProps) => {
         mode="button"
         version="contain"
         to={`/${category.name.toLowerCase()}`}
+        label={`to ${category.name} page`}
       >
         More {category.name}
       </MainLink>

@@ -87,6 +87,7 @@ const RangeSliderComponent = ({
           step={step}
           type="range"
           value={minValue}
+          aria-label="min"
         />
         <input
           className={`${css.input}`}
@@ -98,6 +99,7 @@ const RangeSliderComponent = ({
           step={step}
           type="range"
           value={maxValue}
+          aria-label="max"
         />
       </div>
     </div>

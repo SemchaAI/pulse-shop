@@ -14,6 +14,7 @@ export const MainHeader = () => {
           <Link
             className={css.logoLink}
             href="/"
+            title="PulseShop logo"
           >
             <Activity
               width={45}

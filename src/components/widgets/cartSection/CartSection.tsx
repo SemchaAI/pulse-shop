@@ -80,6 +80,7 @@ export const CartSection = () => {
                   className={css.cartLink}
                   // className={css.cartLink}
                   to="/checkout"
+                  label="to checkout page"
                 >
                   Purchase now
                 </MainLink>

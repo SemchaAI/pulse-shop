@@ -13,6 +13,7 @@ export const HeaderControls = () => {
           mode="link"
           version="text"
           to={'/favorite'}
+          label="to favorite page"
         >
           <div className={css.icon}>
             <Heart className={css.headerIcon} />
@@ -23,6 +24,7 @@ export const HeaderControls = () => {
           mode="link"
           version="text"
           to={'/cart'}
+          label="to cart page"
         >
           <div className={css.icon}>
             <ShoppingCart className={css.headerIcon} />

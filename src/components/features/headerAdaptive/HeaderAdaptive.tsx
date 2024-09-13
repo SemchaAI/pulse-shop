@@ -56,6 +56,7 @@ export const HeaderAdaptive = () => {
                       mode="link"
                       version="text"
                       to={`/${link}`}
+                      label={`to ${link} page`}
                     >
                       {link}
                     </MainLink>

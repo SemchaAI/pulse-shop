@@ -69,6 +69,7 @@ export const LoginForm = ({ className }: IProps) => {
             <MainLink
               version="text"
               to="/registration"
+              label="to registration page"
             >
               Register
             </MainLink>
