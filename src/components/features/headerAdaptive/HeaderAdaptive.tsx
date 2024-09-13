@@ -1,15 +1,23 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './header.module.scss';
 
 import { AlignJustify, X } from 'lucide-react';
 import { HeaderControls } from '@/components/entities';
 import { MainLink } from '@/components/shared';
 import { useScrollControl } from '@/utils/hooks';
-
+import { usePathname } from 'next/navigation';
 export const HeaderAdaptive = () => {
   const [active, setActive] = useState(false);
   useScrollControl(active);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // hide sidebar on path change
+    setActive(false);
+  }, [pathname]);
+
   const classes = `${css.headerContainer} ${
     active ? `${css.headerContainerActive} fadeIn` : ''
   }`;
