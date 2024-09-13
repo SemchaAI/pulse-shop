@@ -43,19 +43,26 @@
     @include btnTypo;
   }
   .filtersContainer {
-    display: none;
-  }
-  .mobile {
-    padding: 10px;
+    //display: none;
     position: fixed;
-    display: block;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
-    background: var(--card);
-    z-index: 100;
+
+    padding: 10px;
+
     overflow: hidden;
+    transform: translate(-100%, 0);
+
+    z-index: var(--z-mob-menu);
+
+    @include transition;
+    background: var(--card);
+  }
+  .mobile {
+    transform: translate(0, 0);
 
     .close {
       display: flex;
