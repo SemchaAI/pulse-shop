@@ -31,6 +31,9 @@
 // Burger menu END
 
 // TABLET_MOBILE NAVIGATION  START
+.headerContainer {
+  display: flex;
+}
 
 .nav {
   width: 100%;
@@ -88,6 +91,16 @@
   }
 }
 
+.mobMenu {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+.mobMenuActive {
+  width: auto;
+  height: auto;
+  visibility: visible;
+}
 // TABLET_MOBILE NAVIGATION END
 
 @media (max-width: 768px) {
@@ -100,23 +113,28 @@
   /* BURGER  END*/
 
   .headerContainer {
-    display: none;
     position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    //mb links will be in center and will have grow attr
+    justify-content: space-between;
+
     width: 60%;
     min-width: 360px;
     height: 100%;
+    padding: 20px;
 
-    top: 0;
-    left: 0;
     z-index: var(--z-mob-menu);
     background-color: var(--body-bg);
+    transform: translate(-100%, 0);
+
+    @include transition;
   }
   .headerContainerActive {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    //mb links wiill be in center and will have grow attr
-    justify-content: space-between;
+    transform: translate(0, 0);
   }
   .mobOverlay {
     display: block;
@@ -129,9 +147,17 @@
     background: var(--overlay);
   }
   .closeBtn {
-    margin-left: auto;
+    width: fit-content;
     display: flex;
-    border-radius: 5px;
+    margin-left: auto;
+
+    // border-radius: 5px;
+    border: 1px solid var(--primary-main);
+    @include transition;
+    &:hover,
+    &:focus {
+      background-color: var(--primary-main);
+    }
   }
   .closeIcon {
     cursor: pointer;
@@ -139,7 +165,7 @@
     @include transition;
     &:hover,
     &:focus {
-      stroke: var(--primary-contained-hover);
+      stroke: var(--contrast);
     }
   }
 }

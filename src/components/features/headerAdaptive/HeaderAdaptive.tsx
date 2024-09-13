@@ -25,16 +25,16 @@ export const HeaderAdaptive = () => {
         ></div>
       )}
       <div className={classes}>
-        {active && (
-          <>
+        {
+          <div className={`${active ? css.mobMenuActive : css.mobMenu}`}>
             <div
               onClick={() => setActive(!active)}
               className={css.closeBtn}
             >
               <X
                 className={css.closeIcon}
-                width={24}
-                height={24}
+                width={23}
+                height={23}
               />
             </div>
             <nav className={css.nav}>
@@ -55,8 +55,8 @@ export const HeaderAdaptive = () => {
                 ))}
               </ul>
             </nav>
-          </>
-        )}
+          </div>
+        }
         <HeaderControls />
       </div>
       {/* <div
