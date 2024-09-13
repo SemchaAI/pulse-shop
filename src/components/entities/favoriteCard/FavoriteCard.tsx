@@ -1,11 +1,15 @@
 'use client';
-import { MainBtn } from '@/components/shared';
-import css from './favoriteCard.module.scss';
-import { ShoppingCart, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { IFavoriteItemUI } from '@/models/cartFavor';
+import { motion } from 'framer-motion';
+import { ShoppingCart, X } from 'lucide-react';
+
+import { MainBtn } from '@/components/shared';
 import { useCartHandlers } from '@/utils/hooks/useCartHandlers';
+
+import type { IFavoriteItemUI } from '@/models/cartFavor';
+
+import css from './favoriteCard.module.scss';
 
 interface IProps {
   item: IFavoriteItemUI;
@@ -16,9 +20,11 @@ export const FavoriteCard = ({ item, removeFavoriteItem }: IProps) => {
   const { addToCartHandler } = useCartHandlers(item.productItemId);
 
   return (
-    <li
-      className={css.favoriteItem + ' ' + (item.disabled ? css.disabled : '')}
-      key={item.id}
+    <motion.li
+      layout
+      exit={{ opacity: 0, translateX: [0, -2000] }}
+      transition={{ duration: 0.6 }}
+      className={`${css.favoriteItem} ${item.disabled ? css.disabled : ''}`}
     >
       <div className={css.favoriteItemContainer}>
         <Link
@@ -64,6 +70,6 @@ export const FavoriteCard = ({ item, removeFavoriteItem }: IProps) => {
           </div>
         </div>
       </div>
-    </li>
+    </motion.li>
   );
 };

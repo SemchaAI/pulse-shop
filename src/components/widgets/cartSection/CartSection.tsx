@@ -4,6 +4,7 @@ import { CardBlock, Container, MainLink } from '@/components/shared';
 import { CartItem, StateContainer } from '@/components/entities';
 import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 
 export const CartSection = () => {
   const { items, totalAmount, updateItemQuantity, removeCartItem, loading } =
@@ -44,17 +45,17 @@ export const CartSection = () => {
               className={css.cartItemsBlock}
             >
               <ul className={css.cartItems}>
-                {/* <AnimatePresence mode="popLayout"> */}
-                {items.map((item, i) => (
-                  <CartItem
-                    key={item.id}
-                    item={item}
-                    index={i}
-                    updateItemQuantity={updateItemQuantity}
-                    removeCartItem={removeCartItem}
-                  />
-                ))}
-                {/* </AnimatePresence> */}
+                <AnimatePresence mode="popLayout">
+                  {items.map((item, i) => (
+                    <CartItem
+                      key={item.id}
+                      item={item}
+                      index={i}
+                      updateItemQuantity={updateItemQuantity}
+                      removeCartItem={removeCartItem}
+                    />
+                  ))}
+                </AnimatePresence>
               </ul>
             </CardBlock>
 

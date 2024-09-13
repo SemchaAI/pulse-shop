@@ -1,9 +1,14 @@
 'use client';
-import { Container } from '@/components/shared';
-import css from './favoriteSection.module.scss';
-import { FavoriteCard, StateContainer } from '@/components/entities';
+import { AnimatePresence } from 'framer-motion';
 import { Box, Loader } from 'lucide-react';
+
+import { Container } from '@/components/shared';
+
+import { FavoriteCard, StateContainer } from '@/components/entities';
+
 import { useFavoriteStore } from '@/stores';
+
+import css from './favoriteSection.module.scss';
 
 export const FavoriteSection = () => {
   const { items, removeFavoriteItem, loading } = useFavoriteStore(
@@ -37,15 +42,15 @@ export const FavoriteSection = () => {
           <h1 className={css.favoriteTitle}>Favorite</h1>
           <div className={css.favoriteBlock}>
             <ul className={css.favoriteItems}>
-              {/* <AnimatePresence mode="popLayout"> */}
-              {items.map((item, i) => (
-                <FavoriteCard
-                  key={item.id}
-                  item={item}
-                  removeFavoriteItem={removeFavoriteItem}
-                />
-              ))}
-              {/* </AnimatePresence> */}
+              <AnimatePresence mode="popLayout">
+                {items.map((item, i) => (
+                  <FavoriteCard
+                    key={item.id}
+                    item={item}
+                    removeFavoriteItem={removeFavoriteItem}
+                  />
+                ))}
+              </AnimatePresence>
             </ul>
           </div>
         </div>

@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+
 import { Minus, Plus, X } from 'lucide-react';
 
 import { MainBtn } from '@/components/shared';
@@ -39,9 +41,11 @@ export const CartItem = ({
   };
 
   return (
-    <li
+    <motion.li
+      layout
+      exit={{ opacity: 0, translateX: [0, -2000] }}
+      transition={{ duration: 0.6 }}
       className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
-      key={item.id}
     >
       <div className={css.cartItemContainer}>
         <Link
@@ -107,6 +111,6 @@ export const CartItem = ({
           />
         </MainBtn>
       </div>
-    </li>
+    </motion.li>
   );
 };
