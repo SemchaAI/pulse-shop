@@ -47,7 +47,7 @@ export const HeaderAdaptive = () => {
                     <MainLink
                       mode="link"
                       version="text"
-                      to={`/admin/${link}`}
+                      to={`/${link}`}
                     >
                       {link}
                     </MainLink>
