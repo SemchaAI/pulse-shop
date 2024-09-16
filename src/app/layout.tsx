@@ -8,6 +8,7 @@ import { MainFooter, MainHeader } from '@/components/widgets';
 import Loading from './loading';
 
 import '@/app/assets/main.scss';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 const nunito = Nunito({
@@ -33,6 +34,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${inter.className} ${nunito.variable}`}>
+        <SpeedInsights />
         <Providers>
           <MainHeader />
           <main
