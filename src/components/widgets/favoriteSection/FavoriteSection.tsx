@@ -34,7 +34,9 @@ export const FavoriteSection = () => {
       </StateContainer>
     );
   }
-
+  if (!items) {
+    <StateContainer>Error. Favorite wasn`t loaded</StateContainer>;
+  }
   return (
     <section className={css.favorite}>
       <Container>
