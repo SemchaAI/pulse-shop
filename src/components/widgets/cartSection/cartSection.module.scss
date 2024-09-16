@@ -155,7 +155,7 @@
   .cartItem {
     height: 428px;
     padding: 20px;
-    flex: 0 0 428px;
+    // flex: 0 0 428px;
   }
   .cartItemContainer {
     flex-direction: column;
@@ -166,13 +166,12 @@
 }
 @media screen and (max-width: 768px) {
   .cartItems {
-    // height: 350px;
-    height: auto;
+    height: 350px;
   }
   .cartItem {
     width: 100%;
 
-    flex: 0 0 350px;
+    // flex: 0 0 350px;
     height: 350px;
 
     // height: 240px;
