@@ -42,7 +42,7 @@ export const FavoriteSection = () => {
           <h1 className={css.favoriteTitle}>Favorite</h1>
           <div className={css.favoriteBlock}>
             <ul className={css.favoriteItems}>
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence>
                 {items.map((item, i) => (
                   <FavoriteCard
                     key={item.id}
