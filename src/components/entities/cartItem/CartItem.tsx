@@ -57,10 +57,7 @@ export const CartItem = ({
   return (
     <motion.li
       layout
-      initial={{ translateX: 0 }}
-      key={item.id}
-      exit={{ opacity: 0, translateX: [0, -2000] }}
-      transition={{ duration: 0.3 }}
+      transition={{ layout: { duration: 0.5 } }}
       className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
     >
       <div className={css.cartItemContainer}>

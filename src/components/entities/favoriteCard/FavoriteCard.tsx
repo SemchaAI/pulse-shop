@@ -22,8 +22,8 @@ export const FavoriteCard = ({ item, removeFavoriteItem }: IProps) => {
   return (
     <motion.li
       layout
-      exit={{ opacity: 0, x: [0, -2000] }}
-      transition={{ duration: 0.6, type: 'spring' }}
+      // exit={{ opacity: 0, x: [0, -2000] }}
+      transition={{ duration: 0.6 }}
       className={`${css.favoriteItem} ${item.disabled ? css.disabled : ''}`}
     >
       <div className={css.favoriteItemContainer}>
