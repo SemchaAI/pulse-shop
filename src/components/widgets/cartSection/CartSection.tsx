@@ -48,28 +48,17 @@ export const CartSection = () => {
               <AnimatePresence mode="popLayout">
                 <ul className={css.cartItems}>
                   {items.map((item, i) => (
-                    <motion.li
-                      layout
-                      initial={{ translateX: 0 }}
+                    <CartItem
                       key={item.id}
-                      exit={{ opacity: 0, translateX: [0, -2000] }}
-                      transition={{ duration: 0.3 }}
-                      className={`${css.cartItem} ${
-                        item.disabled ? css.disabled : ''
-                      }`}
-                    >
-                      <CartItem
-                        item={item}
-                        index={i}
-                        updateItemQuantity={updateItemQuantity}
-                        removeCartItem={removeCartItem}
-                      />
-                    </motion.li>
+                      item={item}
+                      index={i}
+                      updateItemQuantity={updateItemQuantity}
+                      removeCartItem={removeCartItem}
+                    />
                   ))}
                 </ul>
               </AnimatePresence>
             </CardBlock>
-
             <CardBlock
               h={true}
               title="Total cart:"

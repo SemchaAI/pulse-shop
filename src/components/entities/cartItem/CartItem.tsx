@@ -55,14 +55,14 @@ export const CartItem = ({
   };
 
   return (
-    // <motion.li
-    //   layout
-    //   key={item.id}
-    //   exit={{ opacity: 0, translateX: [0, -2000] }}
-    //   transition={{ duration: 0.6 }}
-    //   className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
-    // >
-    <>
+    <motion.li
+      layout
+      initial={{ translateX: 0 }}
+      key={item.id}
+      exit={{ opacity: 0, translateX: [0, -2000] }}
+      transition={{ duration: 0.3 }}
+      className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
+    >
       <div className={css.cartItemContainer}>
         <Link
           className={css.productLink}
@@ -127,7 +127,6 @@ export const CartItem = ({
           />
         </MainBtn>
       </div>
-    </>
-    // </motion.li>
+    </motion.li>
   );
 };
