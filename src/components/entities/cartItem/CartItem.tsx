@@ -16,7 +16,7 @@ interface IProps {
   index: number;
 
   updateItemQuantity: (id: number, quantity: number) => void;
-  removeCartItem: (id: number) => void;
+  removeCartItem: (id: number) => Promise<void>;
 }
 
 enum PlusMinus {
@@ -43,6 +43,14 @@ export const CartItem = ({
       updateItemQuantity(item.id, item.quantity + 1);
     } else if (variant === PlusMinus.minus && item.quantity > 1) {
       updateItemQuantity(item.id, item.quantity - 1);
+    }
+  };
+  const clickRemoveHandler = async (id: number) => {
+    try {
+      await removeCartItem(id);
+      toast.success('Item removed');
+    } catch (error) {
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
@@ -110,7 +118,7 @@ export const CartItem = ({
         <MainBtn
           version="outline"
           icon={true}
-          onClick={() => removeCartItem(item.id)}
+          onClick={() => clickRemoveHandler(item.id)}
         >
           <X
             width={24}
