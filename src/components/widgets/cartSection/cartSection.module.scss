@@ -166,7 +166,8 @@
 }
 @media screen and (max-width: 768px) {
   .cartItems {
-    height: 350px;
+    // height: 350px;
+    height: auto;
   }
   .cartItem {
     width: 100%;
