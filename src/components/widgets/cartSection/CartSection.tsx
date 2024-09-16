@@ -38,21 +38,22 @@ export const CartSection = () => {
       <Container>
         <div className={css.cartContainer}>
           <h1 className={css.cartTitle}>Cart</h1>
-          <AnimatePresence mode="popLayout">
-            <div className={css.cartBlock}>
-              <CardBlock
-                h={true}
-                title="Items"
-                className={css.cartItemsBlock}
-              >
+
+          <div className={css.cartBlock}>
+            <CardBlock
+              h={true}
+              title="Items"
+              className={css.cartItemsBlock}
+            >
+              <AnimatePresence mode="popLayout">
                 <ul className={css.cartItems}>
                   {items.map((item, i) => (
                     <motion.li
                       layout
-                      initial={{ translate: 0 }}
+                      initial={{ translateX: 0 }}
                       key={item.id}
-                      exit={{ opacity: 0, translate: [0, -1000] }}
-                      transition={{ duration: 0.6 }}
+                      exit={{ opacity: 0, translateX: [0, -2000] }}
+                      transition={{ duration: 0.3 }}
                       className={`${css.cartItem} ${
                         item.disabled ? css.disabled : ''
                       }`}
@@ -66,37 +67,37 @@ export const CartSection = () => {
                     </motion.li>
                   ))}
                 </ul>
-              </CardBlock>
+              </AnimatePresence>
+            </CardBlock>
 
-              <CardBlock
-                h={true}
-                title="Total cart:"
-              >
-                <div className={css.cartOrder}>
-                  {/* <h3 className={css.cartTotalTitle}>Total</h3> */}
-                  <div className={css.cartTotal}>
-                    Items price: {totalAmount} MDL
-                  </div>
-                  <div className={css.cartDelivery}>
-                    Items positions: <span>{items.length}</span>
-                  </div>
-                  <p className={css.cartPolicy}>
-                    <span className={css.asterisk}>*</span>By purchasing goods
-                    from us you agree to the privacy policy
-                  </p>
-                  <MainLink
-                    version="contain"
-                    className={css.cartLink}
-                    // className={css.cartLink}
-                    to="/checkout"
-                    label="to checkout page"
-                  >
-                    Purchase now
-                  </MainLink>
+            <CardBlock
+              h={true}
+              title="Total cart:"
+            >
+              <div className={css.cartOrder}>
+                {/* <h3 className={css.cartTotalTitle}>Total</h3> */}
+                <div className={css.cartTotal}>
+                  Items price: {totalAmount} MDL
                 </div>
-              </CardBlock>
-            </div>
-          </AnimatePresence>
+                <div className={css.cartDelivery}>
+                  Items positions: <span>{items.length}</span>
+                </div>
+                <p className={css.cartPolicy}>
+                  <span className={css.asterisk}>*</span>By purchasing goods
+                  from us you agree to the privacy policy
+                </p>
+                <MainLink
+                  version="contain"
+                  className={css.cartLink}
+                  // className={css.cartLink}
+                  to="/checkout"
+                  label="to checkout page"
+                >
+                  Purchase now
+                </MainLink>
+              </div>
+            </CardBlock>
+          </div>
         </div>
       </Container>
     </section>
