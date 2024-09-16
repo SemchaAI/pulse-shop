@@ -10,7 +10,7 @@
   gap: 20px;
 }
 .profileInfo {
-  width: 600px;
+  flex-grow: 1;
 }
 .profileCard {
   position: relative;
@@ -36,4 +36,9 @@
 }
 .icon {
   stroke: var(--success-main);
+}
+@media screen and (max-width: 768px) {
+  .profileContainer {
+    flex-direction: column;
+  }
 }
