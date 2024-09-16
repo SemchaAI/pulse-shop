@@ -4,7 +4,7 @@ import { CardBlock, Container, MainLink } from '@/components/shared';
 import { CartItem, StateContainer } from '@/components/entities';
 import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const CartSection = () => {
   const { items, totalAmount, updateItemQuantity, removeCartItem, loading } =
@@ -47,13 +47,22 @@ export const CartSection = () => {
               <AnimatePresence mode="popLayout">
                 <ul className={css.cartItems}>
                   {items.map((item, i) => (
-                    <CartItem
+                    <motion.li
+                      layout
                       key={item.id}
-                      item={item}
-                      index={i}
-                      updateItemQuantity={updateItemQuantity}
-                      removeCartItem={removeCartItem}
-                    />
+                      exit={{ opacity: 0, translateX: [0, -2000] }}
+                      transition={{ duration: 0.6 }}
+                      className={`${css.cartItem} ${
+                        item.disabled ? css.disabled : ''
+                      }`}
+                    >
+                      <CartItem
+                        item={item}
+                        index={i}
+                        updateItemQuantity={updateItemQuantity}
+                        removeCartItem={removeCartItem}
+                      />
+                    </motion.li>
                   ))}
                 </ul>
               </AnimatePresence>

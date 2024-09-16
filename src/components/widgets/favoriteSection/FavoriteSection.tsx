@@ -41,8 +41,8 @@ export const FavoriteSection = () => {
         <div className={css.favoriteContainer}>
           <h1 className={css.favoriteTitle}>Favorite</h1>
           <div className={css.favoriteBlock}>
-            <ul className={css.favoriteItems}>
-              <AnimatePresence>
+            <AnimatePresence mode="popLayout">
+              <ul className={css.favoriteItems}>
                 {items.map((item, i) => (
                   <FavoriteCard
                     key={item.id}
@@ -50,8 +50,8 @@ export const FavoriteSection = () => {
                     removeFavoriteItem={removeFavoriteItem}
                   />
                 ))}
-              </AnimatePresence>
-            </ul>
+              </ul>
+            </AnimatePresence>
           </div>
         </div>
       </Container>
