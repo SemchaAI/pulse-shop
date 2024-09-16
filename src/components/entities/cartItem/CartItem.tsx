@@ -49,6 +49,7 @@ export const CartItem = ({
   return (
     <motion.li
       layout
+      key={item.id}
       exit={{ opacity: 0, translateX: [0, -2000] }}
       transition={{ duration: 0.6 }}
       className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
