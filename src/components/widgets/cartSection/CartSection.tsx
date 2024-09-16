@@ -44,8 +44,8 @@ export const CartSection = () => {
               title="Items"
               className={css.cartItemsBlock}
             >
-              <ul className={css.cartItems}>
-                <AnimatePresence>
+              <AnimatePresence mode="popLayout">
+                <ul className={css.cartItems}>
                   {items.map((item, i) => (
                     <CartItem
                       key={item.id}
@@ -55,8 +55,8 @@ export const CartSection = () => {
                       removeCartItem={removeCartItem}
                     />
                   ))}
-                </AnimatePresence>
-              </ul>
+                </ul>
+              </AnimatePresence>
             </CardBlock>
 
             <CardBlock
