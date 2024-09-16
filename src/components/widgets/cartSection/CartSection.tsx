@@ -49,8 +49,9 @@ export const CartSection = () => {
                   {items.map((item, i) => (
                     <motion.li
                       layout
+                      initial={{ translate: 0 }}
                       key={item.id}
-                      exit={{ opacity: 0, translateX: [0, -2000] }}
+                      exit={{ opacity: 0, translate: [0, -1000] }}
                       transition={{ duration: 0.6 }}
                       className={`${css.cartItem} ${
                         item.disabled ? css.disabled : ''
