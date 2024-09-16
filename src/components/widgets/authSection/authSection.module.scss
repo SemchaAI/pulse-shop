@@ -14,3 +14,10 @@
   display: flex;
   gap: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .authContent {
+    width: 100%;
+    margin: 0px auto;
+  }
+}
