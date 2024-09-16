@@ -38,13 +38,13 @@ export const CartSection = () => {
       <Container>
         <div className={css.cartContainer}>
           <h1 className={css.cartTitle}>Cart</h1>
-          <div className={css.cartBlock}>
-            <CardBlock
-              h={true}
-              title="Items"
-              className={css.cartItemsBlock}
-            >
-              <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="popLayout">
+            <div className={css.cartBlock}>
+              <CardBlock
+                h={true}
+                title="Items"
+                className={css.cartItemsBlock}
+              >
                 <ul className={css.cartItems}>
                   {items.map((item, i) => (
                     <motion.li
@@ -66,37 +66,37 @@ export const CartSection = () => {
                     </motion.li>
                   ))}
                 </ul>
-              </AnimatePresence>
-            </CardBlock>
+              </CardBlock>
 
-            <CardBlock
-              h={true}
-              title="Total cart:"
-            >
-              <div className={css.cartOrder}>
-                {/* <h3 className={css.cartTotalTitle}>Total</h3> */}
-                <div className={css.cartTotal}>
-                  Items price: {totalAmount} MDL
+              <CardBlock
+                h={true}
+                title="Total cart:"
+              >
+                <div className={css.cartOrder}>
+                  {/* <h3 className={css.cartTotalTitle}>Total</h3> */}
+                  <div className={css.cartTotal}>
+                    Items price: {totalAmount} MDL
+                  </div>
+                  <div className={css.cartDelivery}>
+                    Items positions: <span>{items.length}</span>
+                  </div>
+                  <p className={css.cartPolicy}>
+                    <span className={css.asterisk}>*</span>By purchasing goods
+                    from us you agree to the privacy policy
+                  </p>
+                  <MainLink
+                    version="contain"
+                    className={css.cartLink}
+                    // className={css.cartLink}
+                    to="/checkout"
+                    label="to checkout page"
+                  >
+                    Purchase now
+                  </MainLink>
                 </div>
-                <div className={css.cartDelivery}>
-                  Items positions: <span>{items.length}</span>
-                </div>
-                <p className={css.cartPolicy}>
-                  <span className={css.asterisk}>*</span>By purchasing goods
-                  from us you agree to the privacy policy
-                </p>
-                <MainLink
-                  version="contain"
-                  className={css.cartLink}
-                  // className={css.cartLink}
-                  to="/checkout"
-                  label="to checkout page"
-                >
-                  Purchase now
-                </MainLink>
-              </div>
-            </CardBlock>
-          </div>
+              </CardBlock>
+            </div>
+          </AnimatePresence>
         </div>
       </Container>
     </section>
