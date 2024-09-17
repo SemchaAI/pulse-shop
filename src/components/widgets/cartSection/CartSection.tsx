@@ -2,12 +2,13 @@
 import css from './cartSection.module.scss';
 import { CardBlock, Container, MainLink } from '@/components/shared';
 import { CartItem, StateContainer } from '@/components/entities';
-import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
+import { useCartStore } from '@/stores';
 
 export const CartSection = () => {
   const { items, totalAmount, updateItemQuantity, removeCartItem, loading } =
-    useCart();
+    useCartStore();
+
   console.log('items', items);
 
   if (loading && items.length === 0) {

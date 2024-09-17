@@ -15,7 +15,7 @@ interface IProps {
   item: ICartItemUI;
   index: number;
 
-  updateItemQuantity: (id: number, quantity: number) => void;
+  updateItemQuantity: (id: number, quantity: number) => Promise<void>;
   removeCartItem: (id: number) => Promise<void>;
 }
 
@@ -32,7 +32,10 @@ export const CartItem = ({
 }: IProps) => {
   const url = process.env.NEXT_PUBLIC_IMAGES_HOST;
 
-  const clickQuantityHandler = (variant: PlusMinus, item: ICartItemUI) => {
+  const clickQuantityHandler = async (
+    variant: PlusMinus,
+    item: ICartItemUI
+  ) => {
     if (item.cnt <= item.quantity && variant === PlusMinus.plus) {
       toast.error('Max quantity is ' + item.cnt);
       return;
@@ -42,12 +45,12 @@ export const CartItem = ({
       return;
     }
     if (variant === PlusMinus.plus && item.cnt > item.quantity) {
-      updateItemQuantity(item.id, item.quantity + 1);
-      toast.success('Item added');
+      await updateItemQuantity(item.id, item.quantity + 1);
+      toast.success('success');
       return;
     } else if (variant === PlusMinus.minus && item.quantity > 1) {
-      updateItemQuantity(item.id, item.quantity - 1);
-      toast.success('Item removed');
+      await updateItemQuantity(item.id, item.quantity - 1);
+      toast.success('success');
       return;
     }
   };

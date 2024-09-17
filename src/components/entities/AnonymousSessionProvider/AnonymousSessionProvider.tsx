@@ -1,5 +1,5 @@
 'use client';
-import { useFavoriteStore } from '@/stores';
+import { useCartStore, useFavoriteStore } from '@/stores';
 import { useSession } from 'next-auth/react';
 
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ export const AnonymousSessionProvider = ({
 }) => {
   const { data: session, status, update } = useSession();
   const favorite = useFavoriteStore((state) => state);
+  const cart = useCartStore((state) => state);
 
   useEffect(() => {
     console.log('AnonymousSession', status);
@@ -38,6 +39,7 @@ export const AnonymousSessionProvider = ({
     if (status === 'authenticated') {
       console.info('fetchFavoriteItems');
       favorite.fetchFavoriteItems();
+      cart.fetchCartItems();
     }
   }, [status]);
 
