@@ -5,10 +5,11 @@ import { CartItem, StateContainer } from '@/components/entities';
 import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useCartStore } from '@/stores';
 
 export const CartSection = () => {
   const { items, totalAmount, updateItemQuantity, removeCartItem, loading } =
-    useCart();
+    useCartStore((state) => state);
 
   if (loading && items.length === 0) {
     return (
