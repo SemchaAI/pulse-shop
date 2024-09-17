@@ -33,16 +33,22 @@ export const CartItem = ({
   const url = process.env.NEXT_PUBLIC_IMAGES_HOST;
 
   const clickQuantityHandler = (variant: PlusMinus, item: ICartItemUI) => {
-    if (item.cnt <= item.quantity) {
+    if (item.cnt <= item.quantity && variant === PlusMinus.plus) {
       toast.error('Max quantity is ' + item.cnt);
+      return;
     }
     if (item.quantity <= 1 && variant === PlusMinus.minus) {
       toast.error('Min quantity is 1');
+      return;
     }
     if (variant === PlusMinus.plus && item.cnt > item.quantity) {
       updateItemQuantity(item.id, item.quantity + 1);
+      toast.success('Item added');
+      return;
     } else if (variant === PlusMinus.minus && item.quantity > 1) {
       updateItemQuantity(item.id, item.quantity - 1);
+      toast.success('Item removed');
+      return;
     }
   };
   const clickRemoveHandler = async (id: number) => {
@@ -55,7 +61,16 @@ export const CartItem = ({
   };
 
   return (
-    <>
+    <li
+      // motion.
+      // li
+      // layout
+
+      // layoutId={item.productItemId.toString()}
+      // exit={{ x: -2000 }}
+      // transition={{ duration: 0.7 }}
+      className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
+    >
       <div className={css.cartItemContainer}>
         <Link
           className={css.productLink}
@@ -120,6 +135,6 @@ export const CartItem = ({
           />
         </MainBtn>
       </div>
-    </>
+    </li>
   );
 };
