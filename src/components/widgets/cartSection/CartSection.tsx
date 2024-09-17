@@ -4,7 +4,6 @@ import { CardBlock, Container, MainLink } from '@/components/shared';
 import { CartItem, StateContainer } from '@/components/entities';
 import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
 
 export const CartSection = () => {
   const { items, totalAmount, updateItemQuantity, removeCartItem, loading } =

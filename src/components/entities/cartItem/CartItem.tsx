@@ -51,14 +51,14 @@ export const CartItem = ({
       return;
     }
   };
-  const clickRemoveHandler = (id: number) => {
-    try {
-      removeCartItem(id);
-      toast.success('Item removed');
-    } catch (error) {
-      toast.error('Something went wrong. Please try again.');
-    }
-  };
+  // const clickRemoveHandler = (id: number) => {
+  //   try {
+  //     removeCartItem(id);
+  //     toast.success('Item removed');
+  //   } catch (error) {
+  //     toast.error('Something went wrong. Please try again.');
+  //   }
+  // };
 
   return (
     <li
@@ -126,7 +126,7 @@ export const CartItem = ({
         <MainBtn
           version="outline"
           icon={true}
-          onClick={() => clickRemoveHandler(item.id)}
+          onClick={() => removeCartItem(item.id)}
         >
           <X
             width={24}
