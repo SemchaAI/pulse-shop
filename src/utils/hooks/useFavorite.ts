@@ -1,4 +1,4 @@
-import { IFavoriteItemUI } from '@/models/cartFavor';
+import type { IFavoriteItemUI } from '@/models/cartFavor';
 import { useFavoriteStore } from '@/stores/favorite';
 import { useEffect } from 'react';
 
