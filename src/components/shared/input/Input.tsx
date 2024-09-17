@@ -8,12 +8,12 @@ export const Input = forwardRef<HTMLInputElement, MainInputProps>(
     return (
       <input
         className={inputClass}
-        ref={ref}
         id={props.id}
         type={myType}
         placeholder={props.placeholder}
         value={value}
         {...props}
+        ref={ref}
       />
     );
   }
