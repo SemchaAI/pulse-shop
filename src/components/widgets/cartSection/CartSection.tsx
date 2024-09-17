@@ -45,8 +45,8 @@ export const CartSection = () => {
               title="Items"
               className={css.cartItemsBlock}
             >
-              <ul className={css.cartItems}>
-                <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="popLayout">
+                <ul className={css.cartItems}>
                   {items.map((item, i) => (
                     <motion.li
                       layout
@@ -66,8 +66,8 @@ export const CartSection = () => {
                       />
                     </motion.li>
                   ))}
-                </AnimatePresence>
-              </ul>
+                </ul>
+              </AnimatePresence>
             </CardBlock>
             <CardBlock
               h={true}
