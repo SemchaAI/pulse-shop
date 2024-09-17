@@ -29,12 +29,13 @@ export const FieldPhone = ({
   const {
     ref,
     // maskRef,
-    // value: maskValue,
-    // setValue: setMaskValue,
+    value: maskValue,
+    //setValue: setMaskValue,
     // unmaskedValue,
-    // setUnmaskedValue,
+    setUnmaskedValue,
     // typedValue,
     // setTypedValue,
+    //setUnmaskedValue,
   } = useIMask(opts);
 
   const value = watch(id);
@@ -42,7 +43,9 @@ export const FieldPhone = ({
 
   const onClickClear = () => {
     setValue(id, '');
+    setUnmaskedValue('');
   };
+  console.log('value', value, 'maskValue', maskValue);
 
   return (
     <div className={css.field}>
@@ -57,15 +60,18 @@ export const FieldPhone = ({
           name={id}
           control={control}
           rules={validation ? validation : {}}
-          render={({ field }) => (
+          render={({ field: { value, onChange } }) => (
             <Input
               id={id}
               myType={myType}
               autoComplete={autoComplete}
               placeholder={placeholder}
               ref={ref as LegacyRef<HTMLInputElement>}
-              onChange={field.onChange}
-              value={field.value}
+              onChange={(e) => {
+                setUnmaskedValue(e.target.value);
+                onChange(e.target.value);
+              }}
+              value={maskValue}
             />
           )}
         />
