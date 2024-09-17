@@ -1,4 +1,4 @@
-import { ICartItemUI } from '@/models/cartFavor';
+import type { ICartItemUI } from '@/models/cartFavor';
 import { useCartStore } from '@/stores';
 import { useEffect } from 'react';
 
