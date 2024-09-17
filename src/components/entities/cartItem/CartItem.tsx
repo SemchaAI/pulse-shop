@@ -51,11 +51,9 @@ export const CartItem = ({
       return;
     }
   };
-  const clickRemoveHandler = async (id: number) => {
+  const clickRemoveHandler = (id: number) => {
     try {
-      console.log('clickRemoveHandler', id);
-      if (!confirm('Are you sure you want to remove this item?')) return;
-      await removeCartItem(id);
+      removeCartItem(id);
       toast.success('Item removed');
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
@@ -128,7 +126,7 @@ export const CartItem = ({
         <MainBtn
           version="outline"
           icon={true}
-          onClick={async () => await clickRemoveHandler(item.id)}
+          onClick={() => clickRemoveHandler(item.id)}
         >
           <X
             width={24}
