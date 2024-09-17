@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import toast from 'react-hot-toast';
 
 import { Minus, Plus, X } from 'lucide-react';
 
@@ -9,7 +10,6 @@ import { MainBtn } from '@/components/shared';
 import type { ICartItemUI } from '@/models/cartFavor';
 
 import css from './cartItem.module.scss';
-import toast from 'react-hot-toast';
 
 interface IProps {
   item: ICartItemUI;
