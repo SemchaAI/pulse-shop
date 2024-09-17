@@ -2,16 +2,15 @@
 import css from './cartSection.module.scss';
 import { CardBlock, Container, MainLink } from '@/components/shared';
 import { CartItem, StateContainer } from '@/components/entities';
+import { useCart } from '@/utils/hooks';
 import { Box, Loader } from 'lucide-react';
-import { useCartStore } from '@/stores';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const CartSection = () => {
   const { items, totalAmount, updateItemQuantity, removeCartItem, loading } =
-    useCartStore();
+    useCart();
 
-  console.log('items', items, loading);
-
+  console.log('items', items);
   if (loading && items.length === 0) {
     return (
       <StateContainer>
@@ -51,7 +50,7 @@ export const CartSection = () => {
                 <ul className={css.cartItems}>
                   {items.map((item, i) => (
                     <CartItem
-                      key={item.productItemId}
+                      key={item.id}
                       item={item}
                       index={i}
                       updateItemQuantity={updateItemQuantity}

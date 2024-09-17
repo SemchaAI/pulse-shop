@@ -39,7 +39,7 @@ export const AnonymousSessionProvider = ({
     if (status === 'authenticated') {
       console.info('fetchFavoriteItems');
       favorite.fetchFavoriteItems();
-      cart.fetchCartItems();
+      // cart.fetchCartItems();
     }
   }, [status]);
 
