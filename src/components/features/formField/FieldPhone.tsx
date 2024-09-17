@@ -68,10 +68,10 @@ export const FieldPhone = ({
               placeholder={placeholder}
               ref={ref as LegacyRef<HTMLInputElement>}
               onChange={(e) => {
-                setUnmaskedValue(e.target.value);
                 onChange(e.target.value);
+                setUnmaskedValue(e.target.value);
               }}
-              value={maskValue}
+              value={maskValue || value}
             />
           )}
         />
