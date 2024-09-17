@@ -46,29 +46,31 @@ export const CartSection = () => {
               title="Items"
               className={css.cartItemsBlock}
             >
-              <AnimatePresence mode="popLayout">
-                <ul className={css.cartItems}>
-                  {items.map((item, i) => (
-                    <motion.li
-                      layout
-                      key={item.productItemId}
-                      layoutId={item.productItemId.toString()}
-                      exit={{ x: -2000 }}
-                      transition={{ duration: 0.7 }}
-                      className={`${css.cartItem} ${
-                        item.disabled ? css.disabled : ''
-                      }`}
-                    >
-                      <CartItem
-                        item={item}
-                        index={i}
-                        updateItemQuantity={updateItemQuantity}
-                        removeCartItem={removeCartItem}
-                      />
-                    </motion.li>
-                  ))}
-                </ul>
-              </AnimatePresence>
+              {/* <AnimatePresence mode="popLayout"> */}
+              <ul className={css.cartItems}>
+                {items.map((item, i) => (
+                  <li
+                    // motion.
+                    // li
+                    // layout
+                    key={item.productItemId}
+                    // layoutId={item.productItemId.toString()}
+                    // exit={{ x: -2000 }}
+                    // transition={{ duration: 0.7 }}
+                    className={`${css.cartItem} ${
+                      item.disabled ? css.disabled : ''
+                    }`}
+                  >
+                    <CartItem
+                      item={item}
+                      index={i}
+                      updateItemQuantity={updateItemQuantity}
+                      removeCartItem={removeCartItem}
+                    />
+                  </li>
+                ))}
+              </ul>
+              {/* </AnimatePresence> */}
             </CardBlock>
             <CardBlock
               h={true}
