@@ -1,6 +1,6 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 import { Minus, Plus, X } from 'lucide-react';
 
@@ -10,7 +10,6 @@ import type { ICartItemUI } from '@/models/cartFavor';
 
 import css from './cartItem.module.scss';
 import toast from 'react-hot-toast';
-import { forwardRef } from 'react';
 
 interface IProps {
   item: ICartItemUI;
@@ -37,7 +36,7 @@ export const CartItem = ({
     if (item.cnt <= item.quantity) {
       toast.error('Max quantity is ' + item.cnt);
     }
-    if (item.quantity <= 1) {
+    if (item.quantity <= 1 && variant === PlusMinus.minus) {
       toast.error('Min quantity is 1');
     }
     if (variant === PlusMinus.plus && item.cnt > item.quantity) {

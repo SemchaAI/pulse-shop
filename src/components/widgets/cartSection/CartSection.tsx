@@ -49,10 +49,11 @@ export const CartSection = () => {
                 <AnimatePresence mode="popLayout">
                   {items.map((item, i) => (
                     <motion.li
+                      layout
                       key={item.productItemId}
                       layoutId={item.productItemId.toString()}
-                      exit={{ opacity: 0, x: -2000 }}
-                      transition={{ layout: { duration: 0.5 } }}
+                      exit={{ x: -2000 }}
+                      transition={{ duration: 0.7 }}
                       className={`${css.cartItem} ${
                         item.disabled ? css.disabled : ''
                       }`}
