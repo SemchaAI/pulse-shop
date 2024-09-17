@@ -28,7 +28,7 @@ export const useCartStore = create<CartState>()(
       items: [],
       totalAmount: 0,
 
-      loading: true,
+      loading: false,
       error: false,
 
       fetchCartItems: async () => {

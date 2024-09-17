@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
+import { motion } from 'framer-motion';
 
 import { Minus, Plus, X } from 'lucide-react';
 
@@ -64,14 +65,11 @@ export const CartItem = ({
   // };
 
   return (
-    <li
-      // motion.
-      // li
-      // layout
-
-      // layoutId={item.productItemId.toString()}
-      // exit={{ x: -2000 }}
-      // transition={{ duration: 0.7 }}
+    <motion.li
+      layout
+      layoutId={item.productItemId.toString()}
+      exit={{ x: -2000 }}
+      transition={{ duration: 0.7 }}
       className={`${css.cartItem} ${item.disabled ? css.disabled : ''}`}
     >
       <div className={css.cartItemContainer}>
@@ -138,6 +136,6 @@ export const CartItem = ({
           />
         </MainBtn>
       </div>
-    </li>
+    </motion.li>
   );
 };
