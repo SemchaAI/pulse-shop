@@ -4,6 +4,11 @@ import { BannerSlide } from '@prisma/client';
 
 type TBannerSlide = Omit<BannerSlide, 'id'>;
 
+export const getAll = async (): Promise<BannerSlide[]> => {
+  //console.log('slide', slide);
+  const { data } = await server.get<BannerSlide[]>(ApiRoutes.ADMIN_BANNER);
+  return data;
+};
 export const createOne = async (slide: TBannerSlide): Promise<TBannerSlide> => {
   //console.log('slide', slide);
   const { data } = await server.post<TBannerSlide>(

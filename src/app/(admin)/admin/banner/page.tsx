@@ -1,11 +1,29 @@
+'use client';
+import { useEffect, useLayoutEffect, useState } from 'react';
+
 import { AddSlide, HeaderBanner, SlideList } from '@/components/entities';
 import { UploadThing } from '@/components/features';
 import { Container } from '@/components/shared';
-import { prisma } from '@/prisma/prisma-client';
+
+import { api } from '@/services/api/baseApi';
 import { OPTIONS } from '@/utils/consts/HeaderBanner';
 
-export default async function BannerPage() {
-  const slides = await prisma.bannerSlide.findMany();
+import type { BannerSlide } from '@prisma/client';
+
+export default function BannerPage() {
+  // const slides = await prisma.bannerSlide.findMany();
+  const [slides, setSlides] = useState<BannerSlide[]>([]);
+  const [updateFlag, setUpdateFlag] = useState(false);
+
+  // Fetch slides
+  const fetchSlides = async () => {
+    const response = await api.banner.getAll();
+    setSlides(response);
+  };
+  useLayoutEffect(() => {
+    fetchSlides();
+  }, [updateFlag]);
+
   return (
     <Container>
       {/* <SlideList slides={slides} /> */}
@@ -18,10 +36,13 @@ export default async function BannerPage() {
           <UploadThing />
         </div>
         <div style={{ flexGrow: 1, maxWidth: '50%' }}>
-          <AddSlide />
+          <AddSlide onSlideAdded={() => setUpdateFlag(!updateFlag)} />
         </div>
       </div>
-      <SlideList slides={slides} />
+      <SlideList
+        slides={slides}
+        onSlideAdded={() => setUpdateFlag(!updateFlag)}
+      />
     </Container>
   );
 }

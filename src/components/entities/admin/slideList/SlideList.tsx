@@ -14,13 +14,15 @@ import css from './slideList.module.scss';
 
 interface IProps {
   slides: BannerSlide[];
+  onSlideAdded: () => void;
 }
 
-export const SlideList = ({ slides }: IProps) => {
+export const SlideList = ({ slides, onSlideAdded }: IProps) => {
   const clickHandler = async (files: string[], id: number) => {
     try {
       await deleteUTFiles(files);
       await api.banner.deleteOne({ id });
+      onSlideAdded();
       toast.success('Slide deleted');
     } catch (error) {
       toast.error('Slide deleted failed');

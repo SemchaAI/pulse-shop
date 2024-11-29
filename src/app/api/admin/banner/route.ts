@@ -3,6 +3,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUserSession } from '@/utils/helpers/getUserSession';
 import { BannerSlide, Role } from '@prisma/client';
 
+export async function GET() {
+  try {
+    const bannerSlides = await prisma.bannerSlide.findMany();
+    if (!bannerSlides)
+      return NextResponse.json('BannerSlides not found', { status: 404 });
+
+    return NextResponse.json(bannerSlides, { status: 200 });
+  } catch (error) {
+    console.log('[BANNER_GET] Server error', error);
+    return NextResponse.json(
+      { message: 'Cannot get BannerSlides' },
+      { status: 500 }
+    );
+  }
+}
 export async function POST(req: NextRequest) {
   try {
     const session = await getUserSession();

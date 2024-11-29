@@ -3,8 +3,11 @@ import { SimpleForm2 } from '@/components/entities';
 import { api } from '@/services/api/baseApi';
 import { required } from '@/utils/consts/validationObjects';
 import type { BannerSlide } from '@prisma/client';
+interface IProps {
+  onSlideAdded: () => void;
+}
 
-export const AddSlide = () => {
+export const AddSlide = ({ onSlideAdded }: IProps) => {
   const defaultValues: Omit<BannerSlide, 'id'> = {
     desktop: '',
     tablet: '',
@@ -62,6 +65,7 @@ export const AddSlide = () => {
       title="Add Banner"
       request={async (data) => {
         await api.banner.createOne(data);
+        onSlideAdded();
       }}
     />
   );
