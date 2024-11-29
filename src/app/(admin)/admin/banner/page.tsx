@@ -4,8 +4,6 @@ import { Container } from '@/components/shared';
 import { prisma } from '@/prisma/prisma-client';
 import { OPTIONS } from '@/utils/consts/HeaderBanner';
 
-export const dynamic = 'force-dynamic';
-
 export default async function BannerPage() {
   const slides = await prisma.bannerSlide.findMany();
   return (
