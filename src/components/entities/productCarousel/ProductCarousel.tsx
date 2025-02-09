@@ -98,7 +98,7 @@ export const EmblaCarousel: React.FC<PropType> = (props) => {
           <div className={css.emblaThumbsContainer}>
             {slides.map((img, index) => (
               <Thumbnail
-                url={url}
+                url={url + img}
                 key={img}
                 onClick={() => onThumbClick(index)}
                 selected={index === selectedIndex}
