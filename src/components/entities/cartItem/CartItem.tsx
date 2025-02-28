@@ -83,7 +83,7 @@ export const CartItem = ({
             height={200}
             sizes="(max-width: 600px) 150px,(max-width: 375px) 100px,200px"
             className={css.cartItemImg}
-            src={url + '/' + item.img}
+            src={url + item.img}
             alt={item.title}
           />
         </Link>
